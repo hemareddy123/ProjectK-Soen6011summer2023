@@ -5,7 +5,7 @@ This project aims to provide a platform for career services where students and j
 
 ## Team Information
 1. Praful Peethambaran Nair (40226483) GitHub username : prafulnair
-2. Revanth Velagandula (40229629)      GitHub username : 
+2. Revanth Velagandula (40229629)      GitHub username : Revanthguptha27
 3. Hema Reddy (40236911)               GitHub username :  hemareddy123
 4. Dikshant Yadav (40221623)           GitHub username : 005dikshant
 5. Himanshu Rathod (40234325)          GitHub username : himi98
