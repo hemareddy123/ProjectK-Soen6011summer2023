@@ -3,7 +3,7 @@
 ## ProjectK-Soen6011summer2023
 **Date:** July 8, 2023  
 **Duration:** 2 hours  
-**Meeting Mode:** Online, Google-meets
+**Meeting Mode:** In Person, Concordia University (Webster Library)
 
 **Members:**
 - Praful Peethambaran Nair (40226483)
