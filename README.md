@@ -1,6 +1,6 @@
 # ProjectK-Soen6011summer2023
 # Career Services Application
-This project aims to provide a platform for career services where students and job seekers can post their portfolios and shortlist jobs according to their preference, while employers can also post jobs on behalf of their institution and can shortlist prospective candidates according to their needs. This is a web application that would allow different users (job seekers, employers and admin) to interact with the interface and use different features like posting a new job, shortlisting candidates (for employers) and creating a new resume, updating the resume and applying and shortlisting jobs (for job-seekers). This application would require for the user to have a PC with a decent internet connection. In order to avail of these services from the platform, all users have to create an account by using email and password. Once the account is created, users can just log in to access the services. The main users, for now, involve Employers, Students/Job seekers and admins, who will manage all profiles, job postings etc. 
+This project aims to provide a platform for career services where students and job seekers can post their portfolios and shortlist jobs according to their preference, while employers can also post jobs on behalf of their institution and can shortlist prospective candidates according to their needs. This is a web application that would allow different users (job seekers, employers and admin) to interact with the interface and use different features like posting a new job, shortlisting candidates (for employers) and creating a new resume, updating the resume and applying and shortlisting jobs (for job-seekers). This application would require the user to have a PC with a decent internet connection. In order to avail of these services from the platform, all users have to create an account by using email and password. Once the account is created, users can just log in to access the services. The main users, for now, involve Employers, Students/Job seekers and admins, who will manage all profiles, job postings etc. 
 
 
 ## Team Information
@@ -13,4 +13,6 @@ This project aims to provide a platform for career services where students and j
 
 
 ## Technologies, Frameworks used
-** will update soon ** 
+1. Frontend: HTML5, CSS, Javascript
+2. Backend: Python, Flask
+3. Database: Sqlite or MySql
