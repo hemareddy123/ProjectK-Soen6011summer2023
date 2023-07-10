@@ -10,4 +10,3 @@ As an admin, I want to efficiently manage user profiles and job postings on the 
 | | 2. As an admin, I should be able to manage all the security related issues for the platform. | Implement strong security measures to protect user data and prevent unauthorized access. | 2|
 | | 3. As an admin, I should be able to manage posting jobs and track job applications. | Implementation should be able to View the list of job applications received for each job posting. | 5| 
 | | 4. As an admin, I should be able to access get an overview of all the data. | Implementation should be able conclude all the stats about platform, list of users, employers, portfolio , job posting. | 3| 
-
