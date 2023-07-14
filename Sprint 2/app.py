@@ -1,0 +1,112 @@
+# This is a sample Python script.
+import re
+
+import hashlib
+# Press ⌃R to execute it or replace it with your code.
+# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+
+# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+
+from flask import Flask, render_template, request
+import mysql.connector
+
+app = Flask(__name__)
+
+# Database information and config.
+db = mysql.connector.connect(host = "localhost",user = "root", password="root@1234", database="loginmodule")
+
+@app.route('/')
+def index():
+    return render_template('login.html')
+
+
+@app.route('/login', methods = ['POST'])
+def login():
+    email = request.form['email']
+    password = request.form['password']
+
+    # checking if a user exist already.
+    cursor = db.cursor()
+    cursor.execute('SELECT * FROM useraccounts WHERE emailid = %s AND password=%s',(email,password))
+    user = cursor.fetchone()
+    cursor.close()
+
+    if user:
+        return "Login Successful"
+    else:
+        return "Login failed. Invalid user credentials."
+
+@app.route('/register', methods =['GET', 'POST'])
+def register():
+    msg = ''
+    if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form :
+        username = request.form['username']
+        password = request.form['password']
+        email = request.form['email']
+        cursor = db.cursor()
+        cursor.execute('SELECT * FROM accounts WHERE username = % s', (username, ))
+        account = cursor.fetchone()
+        if account:
+            msg = 'Account already exists !'
+        elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
+            msg = 'Invalid email address !'
+        elif not re.match(r'[A-Za-z0-9]+', username):
+            msg = 'Username must contain only characters and numbers !'
+        elif not username or not password or not email:
+            msg = 'Please fill out the form !'
+        else:
+            cursor.execute('INSERT INTO useraccounts VALUES (NULL, % s, % s, % s)', (username, password, email, ))
+            mysql.connection.commit()
+            msg = 'You have successfully registered !'
+    elif request.method == 'POST':
+        msg = 'Please fill out the form !'
+    return render_template('register.html', msg = msg)
+# @app.route('/register', methods=['POST'])
+# def show_register_form():
+#     return render_template('register.html')
+
+# @app.route('/register', methods =['GET', 'POST'])
+# def register():
+#     msg = ''
+#     if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form :
+#         first_name = request.form['first_name']
+#         last_name = request.form['last_name']
+#         password = request.form['password']
+#         email = request.form['email']
+#         confirm_password = request.form['confirm_password']
+#
+#         if len(password) < 6:
+#             return render_template('register.html', error='Password should be of minimum 6 character in length')
+#         if not re.search(r"\d", password):
+#             return render_template('register.html', error='Password should contain at least one digit.')
+#
+#         if not re.search(r"[A-Z]", password):
+#             return render_template('register.html', error='Password should contain at least one uppercase letter.')
+#
+#         if not re.search(r"[!@#$%^&*]", password):
+#             return render_template('register.html',
+#                                    error='Password should contain at least one special character (!@#$%^&*).')
+#
+#             # Validate password match
+#         if password != confirm_password:
+#             return render_template('register.html', error='Passwords do not match.')
+#
+#         cursor = db.cursor()
+#         cursor.execute('SELECT * FROM accounts WHERE emailid = % s', (email, ))
+#         account = cursor.fetchone()
+#         if account:
+#             msg = 'Account already exists !'
+#
+#         else:
+#             cursor.execute('INSERT INTO accounts VALUES (%s, % s, % s, % s)', (first_name, last_name, email, password,))
+#             mysql.connection.commit()
+#             msg = 'You have successfully registered !'
+#     elif request.method == 'POST':
+#         msg = 'Please fill out the form !'
+#     return render_template('register.html', msg = msg)
+
+
+
+if __name__ == '__main__':
+    app.run()
