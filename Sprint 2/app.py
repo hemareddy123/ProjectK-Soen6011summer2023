@@ -62,49 +62,6 @@ def register():
     elif request.method == 'POST':
         msg = 'Please fill out the form !'
     return render_template('register.html', msg = msg)
-# @app.route('/register', methods=['POST'])
-# def show_register_form():
-#     return render_template('register.html')
-
-# @app.route('/register', methods =['GET', 'POST'])
-# def register():
-#     msg = ''
-#     if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form :
-#         first_name = request.form['first_name']
-#         last_name = request.form['last_name']
-#         password = request.form['password']
-#         email = request.form['email']
-#         confirm_password = request.form['confirm_password']
-#
-#         if len(password) < 6:
-#             return render_template('register.html', error='Password should be of minimum 6 character in length')
-#         if not re.search(r"\d", password):
-#             return render_template('register.html', error='Password should contain at least one digit.')
-#
-#         if not re.search(r"[A-Z]", password):
-#             return render_template('register.html', error='Password should contain at least one uppercase letter.')
-#
-#         if not re.search(r"[!@#$%^&*]", password):
-#             return render_template('register.html',
-#                                    error='Password should contain at least one special character (!@#$%^&*).')
-#
-#             # Validate password match
-#         if password != confirm_password:
-#             return render_template('register.html', error='Passwords do not match.')
-#
-#         cursor = db.cursor()
-#         cursor.execute('SELECT * FROM accounts WHERE emailid = % s', (email, ))
-#         account = cursor.fetchone()
-#         if account:
-#             msg = 'Account already exists !'
-#
-#         else:
-#             cursor.execute('INSERT INTO accounts VALUES (%s, % s, % s, % s)', (first_name, last_name, email, password,))
-#             mysql.connection.commit()
-#             msg = 'You have successfully registered !'
-#     elif request.method == 'POST':
-#         msg = 'Please fill out the form !'
-#     return render_template('register.html', msg = msg)
 
 
 
