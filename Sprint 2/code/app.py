@@ -22,7 +22,5 @@ def hello_world():  # put application's code here
 #api.add_resource(signupEmp,"/employerProfile")
 api.add_resource(CrUser,"/signUp")
 
-
-
 if __name__ == '__main__':
     app.run()
