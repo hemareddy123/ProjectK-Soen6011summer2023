@@ -1,17 +1,26 @@
 from flask_restful import reqparse, Resource
-from Models.User import User
+from Models.User import User,bcrypt
 
 _user_parser = reqparse.RequestParser()
 _user_parser.add_argument('username', type=str, required=True, help='Add the username into the system')
 _user_parser.add_argument('password', type=str, required=True, help='Add the password into the system')
-
+_user_parser.add_argument('usertype',type=str, required=False, help='Add the type of user into the system')
+_user_parser.add_argument('useremail',type=str, required=False, help='Add the email of user')
 class CrUser(Resource):
     def post(self):
-        print("before")
         data = _user_parser.parse_args()
-        print("after")
-        print(data)
         user = User(**data)
         user.save_to_db()
-        print("user created")
         return "user created successfully"
+
+class UserLogin(Resource):
+    def post(self):
+        data = _user_parser.parse_args()
+        print('not allowed')
+        user = User.get_user_by_username(data['username'])
+        if user and bcrypt.check_password_hash(user.password,data['password']):
+            return "user logined success"
+        else:
+            return "login failure"
+
+
