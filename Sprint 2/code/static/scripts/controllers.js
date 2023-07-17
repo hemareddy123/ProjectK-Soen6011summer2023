@@ -37,7 +37,6 @@ $('#loginForm').submit(function(event) {
         username: $('input[name="loginusername"]').val(),
         password: $('input[name="loginpassword"]').val(),
     };
-    console.log(formData);
     $.ajax({
         url: 'http://127.0.0.1:5000/login',
         type: 'POST',
@@ -45,9 +44,10 @@ $('#loginForm').submit(function(event) {
         contentType: 'application/json',
         success: function (response) {
             // Handle the response from the server
-            if(response === "user logined success"){
-                console.log("user logined success");
-              // load next web page
+            message = response.message;
+            console.log(response);
+            if(message === 'success'){
+               window.location.href = response.redirect_url + "?username="+response.name;
             }
         },
         error: function (error) {
@@ -56,3 +56,41 @@ $('#loginForm').submit(function(event) {
         }
     });
 })
+
+$('#jobPosting').submit(function(event) {
+    event.preventDefault();
+    var formData = {
+        title: $('input[name="jobTitle"]').val(),
+        description: $('textArea[name="description"]').val(),
+        startDate: $('input[name="endDate"]').val(),
+        endDate: $('input[name="startDate"]').val(),
+        location: $('input[name="location"]').val(),
+        jobType: $('select[name="jobType"').val()
+    };
+    function showSuccessDiv() {
+        $("#successDiv").fadeIn(500, function() {
+          setTimeout(function() {
+            $("#successDiv").fadeOut(500);
+          }, 2000); // 2000 milliseconds (2 seconds)
+        });
+      }
+
+    $.ajax({
+        url: 'http://127.0.0.1:5000/postJob',
+        type: 'POST',
+        data: JSON.stringify(formData),
+        contentType: 'application/json',
+        success: function (response) {
+            // Handle the response from the server
+           showSuccessDiv()
+           $('#jobPosting').each(function(){
+                this.reset();
+            });
+        },
+        error: function (error) {
+            // Handle any errors that occur during the request
+            console.error(error);
+        }
+    });
+
+});

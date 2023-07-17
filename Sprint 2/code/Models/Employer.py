@@ -15,5 +15,6 @@ class Employer(db.Model):
         db.session.add(self)
         db.session.commit()
 
-    def get_user_by_username(self):
-        return
+    @classmethod
+    def get_user_by_username(cls, username_):
+        return cls.query.filter_by(username=username_).first()
