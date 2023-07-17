@@ -1,0 +1,60 @@
+.custom-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.custom-form .form-heading {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.custom-form .form-control {
+    background-color: #fff;
+    border-radius: 4px;
+    margin-bottom: 20px; /* Add vertical spacing between form controls */
+}
+
+.custom-form .form-control:focus {
+    box-shadow: none;
+    border-color: #007bff;
+}
+
+.custom-form .btn-submit {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+}
+
+.custom-form .btn-submit:hover {
+    background-color: #0056b3;
+}
+/*body {*/
+/*    background: linear-gradient(120deg, #2980b9, #6dd5fa);*/
+/*    background-repeat: no-repeat;*/
+/*    background-attachment: fixed;*/
+/*    background-size: cover;*/
+/*}*/
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('images/luke-chesser-IGtutkXikuc-unsplash.jpg');
+    background-size: cover;
+}
+
+
+.custom-form {
+    width: 500px; /* Adjust the width as needed */
+}
+
+.custom-form label {
+    text-align: left;
+}
+
