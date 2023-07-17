@@ -1,45 +1,116 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" >
 <head>
-    <title>Sign Up</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <meta charset="UTF-8">
+  <title> Signup &amp; Login</title>
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/index.css') }}">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+<!-- partial:index.partial.html -->
+<div class="container">
 
-<form id="signupForm" action="http://localhost:80/signUp" method="post">
-    Username: <input type="text" name="username"><br>
-    Password: <input type="password" name="password"><br>
-    <input type="submit" value="Submit">
-</form>
+    <div class="wrapper">
+      <div class="title-text">
+        <div class="title login">Login</div>
+        <div class="title signup">Signup</div>
+      </div>
+      
 
-<script>
-    // Prevent the default form submission behavior
-    $('#signupForm').submit(function (event) {
-        event.preventDefault();
+    <div class="form-container">
+      <div class="slide-controls">
+        <input type="radio" name="slider" id="login" checked>
+        <input type="radio" name="slider" id="signup">
+        <label for="login" class="slide text-login">Login</label>
+        <label for="signup" class="slide text-signup">Signup</label>
+        <div class="slide-tab"></div>
+      </div>
+      
 
-        // Get the form data and convert it to JSON format
-        var formData = {
-            username: $('input[name="username"]').val(),
-            password: $('input[name="password"]').val()
-        };
+      <div class="form-inner">
+        <form class="login" id="loginForm">
+          <div class="field">
+            <input id="uname" name="loginusername" type="text" maxlength="22" required>
+            <label>User Name</label>
+          </div>
+          <div class="field box-pass">
+            <input id="lpass" name="loginpassword" class="password" type="password" minlength="8" required>
+            <label>Password</label>
+            <i class="icon-password  bi-eye-slash-fill"></i>
+          </div>
+          <p id="alertlpass">The password must be greater than 8 digits</p>
+          <div class="field">
+            <input class="btn-login" type="submit" value="Login">
+          </div>
+        </form>
 
-        // Send the POST request with JSON data
-        $.ajax({
-            url: 'http://localhost:80/signUp',
-            type: 'POST',
-            data: JSON.stringify(formData),
-            contentType: 'application/json',
-            success: function (response) {
-                // Handle the response from the server
-                console.log(response);
-            },
-            error: function (error) {
-                // Handle any errors that occur during the request
-                console.error(error);
-            }
-        });
-    });
-</script>
+        <form class="signup" id="signupForm" method="post">
+          <div class="field">
+            <input id="username" name="username" type="text" maxlength="22" required>
+            <label>User Name</label>
+          </div>
+          <p id="alertuname">This name has already been used</p>
+          <div class="field">
+            <input id="email" type="email" name="useremail" maxlength="35" required>
+            <label id="lemail" >Email</label>
+          </div>
+          <div class="field box-pass">
+            <input id="pass" class="password" type="password"
+            minlength="8" name="password" required>
+            <label>Password</label>
+            <i class="icon-password  bi-eye-slash-fill"></i>
+          </div>
+          <p id="alertpass">The password must be greater 8 digits</p>
+          <div class="field box-pass">
+            <input id="cpass" class="password" type="password" minlength="8" required>
+            <label>Confirm password</label>
+            <i class="icon-password  bi-eye-slash-fill"></i>
+          </div>
+
+          <div id="role-field">
+            <input type="radio" id="admin" name="role" value="Admin" checked>
+            <label for="admin">Admin</label>
+          
+            <input type="radio" name="role" id="employer" value="Employer">
+            <label for="employer">Employer</label>
+          
+            <input type="radio" name="role" id="student" value="Student">
+            <label for="student">Student</label>
+          </div>
+                    
+
+          <p id="alertcpass">Password is incorrect</p>
+          <div class="field">
+            <button class="btn btn-signup" type="submit">
+              <span class="btn__text">Signup</span>
+              <svg class="btn__progress" viewBox="0 0 48 48" width="48px" height="48px">
+                <circle class="btn__progress-track" r="20" cx="24" cy="24" fill="none" stroke="#c7cad1" stroke-width="8" />
+                <circle class="btn__progress-fill" r="20" cx="24" cy="24" fill="none" stroke="#000000" stroke-width="8" transform="rotate(-90,24,24)" stroke-dasharray="125.66 125.66" stroke-dashoffset="125.66" />
+                <polyline class="btn__progress-check" points="12,24 20,32 36,16" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="34 34" stroke-dashoffset="34" />
+              </svg>
+            </button>
+          </div>       
+        </form>
+        
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div id="modalContainer">
+  <div class="modal-content">
+    <i class="bi bi-exclamation-circle-fill"></i>
+    <p class="paragraf">
+      The information entered is incorrect
+    </p>
+    </div>
+</div>
+
+<img class="mooj" src="https://iili.io/HXsukuV.png">
+<!-- partial -->
+<script src="{{ url_for('static',filename='scripts/controllers.js') }}"> </script>
+<script src="{{ url_for('static',filename='scripts/index.js') }}"> </script>
 
 </body>
 </html>
