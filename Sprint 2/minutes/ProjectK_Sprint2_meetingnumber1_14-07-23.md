@@ -13,7 +13,7 @@
 - Tanay Srivastava (40234148)
 - Revanth Velagandula (40229629) (Joined Online)
 
-The meeting was called to start at 6.30 pm, July 8, 2023.
+The meeting was called to start at 6.30 pm, July 14, 2023.
 
 ## Meeting Agenda
 
