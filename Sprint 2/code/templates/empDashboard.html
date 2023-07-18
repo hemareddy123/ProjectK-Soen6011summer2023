@@ -26,8 +26,8 @@
 </div>
 
 <!-- partial:index.partial.html -->
-<div class="flex">
-  <div class="h-screen w-60 rounded-br-md rounded-tr-lg bg-primary p-4 antialiased">
+<div class="flex min-h-screen">
+  <div class="w-60 rounded-br-md rounded-tr-lg bg-primary p-4 antialiased">
     <div class="flex items-center gap-2">
       <div class="grid h-9 w-9 place-content-center rounded border border-primary-light bg-primary-light/50 text-xl text-white">UI</div>
       <div class="">
@@ -67,23 +67,28 @@
     </ul>
   </div>
   
-  <div class="bg-white p-4" style="position: relative;">  
+  <div class="bg-white p-4 class="grid-container"">  
       <h2 class="text-3xl font-bold text-slate-800">Welcome to your Career Service Dashboard</h2>
       <p style="margin-top: 10px;" class="font-medium text-slate-500">Track, manage and view jobs postings and Candidates</p>
 
-      <div id="listings" class="bg-white rounded-lg shadow-md p-4" style="position: absolute;">
-        <h3 class="text-lg font-semibold text-gray-800">Job Title</h3>
-        <p class="text-gray-600">Company Name</p>
-        <p class="text-sm text-gray-500">Location</p>
-        <p class="mt-2 text-sm text-gray-700">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget nisi nec mi faucibus
-          ultrices.
-        </p>
-        <button class="mt-4 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md">Apply Now</button>
+      <div id="listings" class="grid grid-cols-4 gap-4">
+        {% for job in jobs %}
+          <div class="bg-white shadow-md p-4 w-60 rounded-br-md rounded-tr-lg bg-primary antialiased">
+            <h3 class="text-lg font-semibold text-gray-800">Job-Title: {{ job.title }}</h3>
+            <p class="text-gray-600">Job-Type: {{ job.jobType }}</p>
+            <p class="text-sm text-gray-500">Job-Location: {{ job.location }}</p>
+            <p class="mt-2 text-md text-gray-700">
+              Description: {{ job.description }}
+            </p>
+            
+            <p class="text-gray-400">start date: {{ job.startDate.strftime('%d %b %Y') }}</p>
+            <p class="text-gray-400">end date: {{ job.endDate.strftime('%d %b %Y') }}</p>
+          </div>
+        {% endfor %}
       </div>
     
     <!-- JOB POSTING FORM -->
-    <div id="postJob" class="w-full max-w-xl mx-auto invisible m-2" style="position: absolute;">
+    <div id="postJob" class="w-full max-w-xl mx-auto hidden m-2">
       <form id="jobPosting" action="#">
         <h1 class="text-2xl mb-2">Post new job</h1>
         
@@ -173,6 +178,9 @@
       </form>
     </div>
   </div>
+
+
+
     <br>
 </div>
 <!-- partial -->

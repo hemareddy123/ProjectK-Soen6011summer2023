@@ -26,5 +26,6 @@ class JobPosting(db.Model):
         db.session.add(self)
         db.session.commit()
 
-    def get_user_by_username(self):
-        return
+    @classmethod
+    def get_all_jobs(cls):
+        return cls.query.all()

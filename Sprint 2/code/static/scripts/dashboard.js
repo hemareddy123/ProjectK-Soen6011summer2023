@@ -27,7 +27,7 @@ $("#addJob, #dashboard, #candidates, #settings").click(function(event) {
 
 $("#addJob, #dashboard").click(function(event) {
   event.stopPropagation();
-  $("#listings, #postJob").toggleClass("invisible");
+  $("#listings, #postJob").toggleClass("hidden");
 })
 
   
