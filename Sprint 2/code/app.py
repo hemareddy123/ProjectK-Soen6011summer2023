@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from flask_restful import Api, Resource
 from db import db
 from Models.User import User
+from Models.JobPosting import JobPosting
 
 from Resource.UserController import CrUser,UserLogin
 from Resource.JobPostController import CrJobPosting
@@ -27,8 +28,9 @@ def hello_world():  # put application's code here
 def emp_dashboard():
     username = request.args.get('username')
     emp = User.get_user_by_username(username)
+    jobs = JobPosting.get_all_jobs()
 
-    return render_template('empDashboard.html',username=emp.username,email=emp.useremail,)
+    return render_template('empDashboard.html',username=emp.username,email=emp.useremail,jobs=jobs)
 
 api.add_resource(UserLogin,"/login")
 api.add_resource(CrUser,"/signUp")
