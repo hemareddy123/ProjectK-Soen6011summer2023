@@ -1,8 +1,75 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
 
-/* body {
-    background-image: url("/static/images/background_job.jpeg");
-    background-size: cover;
-} */
+:root {
+    --hue: 223;
+    --bg2: #d1c7c7;
+}
+
+html {
+    display: grid;
+    max-height: 100%;
+    max-width: 100%;
+    margin: center;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/estee-janssens-zEqkUMiMxMI-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
 
 [x-cloak] { display: none !important; }
+
+nav {
+	position:sticky;
+	display: flex; /* 1 */
+	justify-content: space-between; /* 2 */
+	padding: 9px; /* 3 */
+	background: #fcb900;
+  }
+  
+nav ul {
+display: flex; /* 5 */
+list-style: none; /* 6 */
+}
+
+nav li {
+padding-left: 1rem; /* 7! */
+}
+
+.nav-btn {
+background: none;
+border: none;
+color: #fff;
+font-size: 16px;
+color: black;
+padding: 10px 15px;
+margin: 0 5px;
+cursor: pointer;
+}
+
+.nav-btn:hover {
+text-decoration: underline;
+}
+
+footer {
+text-align: center;
+font-weight: 600;
+background: #fcb900;
+height: 23px;
+padding:4px;
+margin-top: 50px;
+position: sticky;
+}
+
+#postJob {
+    display:none;
+}

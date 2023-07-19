@@ -8,13 +8,13 @@ from Resource.JobPostController import CrJobPosting
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///instance/db.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
 @app.before_first_request
 def create_tables():
-    #db.drop_all()
+    db.drop_all()
     db.create_all()
 
 api = Api(app)
@@ -35,4 +35,4 @@ api.add_resource(CrUser,"/signUp")
 api.add_resource(CrJobPosting,"/postJob")
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

@@ -23,6 +23,12 @@ $('#signupForm').submit(function (event) {
                 console.log("User created Successfully");
               // load next web page
             }
+            var success=document.getElementById('success');
+            success.style.display="block";
+            success.textContent="User Created Successfully!!";
+            setTimeout(function() {
+                location.reload();
+              }, 5000);
         },
         error: function (error) {
             // Handle any errors that occur during the request

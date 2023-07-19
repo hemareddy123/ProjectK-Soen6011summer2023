@@ -10,7 +10,9 @@ _user_parser.add_argument('useremail',type=str, required=False, help='Add the em
 class CrUser(Resource):
     def post(self):
         data = _user_parser.parse_args()
+        print(data)
         user = User(**data)
+        print(user)
         user.save_to_db()
         return "user created successfully"
 

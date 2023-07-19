@@ -27,7 +27,12 @@ $("#addJob, #dashboard, #candidates, #settings").click(function(event) {
 
 $("#addJob, #dashboard").click(function(event) {
   event.stopPropagation();
-  $("#listings, #postJob").toggleClass("invisible");
+  document.getElementById('postJob').style.display='block';
+  // $("#listings, #postJob").toggleClass("invisible");
+})
+
+$("#logout").click(function(event) {
+  window.location.href = 'http://127.0.0.1:5000/';
 })
 
   

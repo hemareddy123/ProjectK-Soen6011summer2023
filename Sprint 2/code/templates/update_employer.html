@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Employer Profile Update</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@600&display=swap");
+body {
+  margin-top: 150px;
+  margin-left:430px;
+  margin-bottom:150px;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  /*justify-content: center;*/
+  align-items: center;
+  height: 80vh;
+  background: linear-gradient(45deg, greenyellow, dodgerblue);
+  font-family: "Baskerville";
+}
+.center {
+  position: relative;
+  padding: 50px 50px;
+  background: #fff;
+  border-radius: 2px;
+  width: 500px;
+  height: 600px;
+  margin-bottom: 50px;
+}
+.center h2 {
+  font-size: 25px;
+  border-left: 5px solid dodgerblue;
+  padding: 10px;
+  color: #000;
+  letter-spacing: 5px;
+  margin-bottom: 30px;
+  margin-top: 10px;
+  font-weight: bold;
+  padding-left: 10px;
+}
+/* .center .inputbox {
+  position: relative;
+  width: 300px;
+  height: 50px;
+  margin-bottom: 50px;
+} */
+.center label {
+  font-weight: bold;
+  font-size: 15px;
+}
+.center .inputbox input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border: 2px solid #000;
+  outline: none;
+  background: none;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 1.2em;
+}
+.center .inputbox:last-child {
+  margin-bottom: 0;
+}
+.center .inputbox span {
+  position: absolute;
+  top: 14px;
+  left: 20px;
+  font-size: 1em;
+  transition: 0.6s;
+  font-family: sans-serif;
+}
+.center .inputbox input:focus ~ span,
+.center .inputbox input:valid ~ span {
+  transform: translateX(-13px) translateY(-35px);
+  font-size: 1em;
+}
+.center .inputbox [type="button"] {
+  width: 50%;
+  background: dodgerblue;
+  color: #fff;
+  border: #fff;
+}
+.center .inputbox:hover [type="button"] {
+  background: linear-gradient(45deg, greenyellow, dodgerblue);
+}
+
+  </style>
+</head>
+<body>
+    <div class="center">
+        <h2>Update Employer Profile</h2>
+        <form method="POST" action="/update_profile">
+            <label for="first_name" style="display: block; margin-bottom: 10px; margin-top: 10px;">First Name:</label>
+            <input type="text" id="first_name" name="first_name" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+      
+            <label for="last_name" style="display: block; margin-bottom: 10px; margin-top: 10px;">Last Name:</label>
+            <input type="text" id="last_name" name="last_name" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+      
+            <label for="organization" style="display: block; margin-bottom: 10px; margin-top: 10px;">Organization:</label>
+            <input type="text" id="organization" name="organization" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+      
+            <label for="email" style="display: block; margin-bottom: 10px; margin-top: 10px;">Email:</label>
+            <input type="email" id="email" name="email" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+      
+            <label for="phone" style="display: block; margin-bottom: 10px; margin-top: 10px;">Phone:</label>
+            <input type="text" id="phone" name="phone" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+      
+            <label for="additional_info" style="display: block; margin-bottom: 10px; margin-top: 10px;">Additional Information:</label>
+            <textarea id="additional_info" name="additional_info" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+      
+            <button type="submit" style="width: 30%; padding: 10px; margin-top: 20px; background-color: dodgerblue; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Update</button>
+          </form>
+      </div>
+</body>
+</html>

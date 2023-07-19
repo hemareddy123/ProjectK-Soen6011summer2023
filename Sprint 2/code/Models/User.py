@@ -6,12 +6,12 @@ class User(db.Model):
     __tablename__ = 'user'
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(50), nullable=False)
+    username = db.Column(db.String(50), nullable=False, unique=True)
     password = db.Column(db.String(150), nullable=False)
     usertype = db.Column(db.String(10), nullable=False)
-    useremail = db.Column(db.String(20), nullable=False)
+    useremail = db.Column(db.String(20), nullable=False, unique=True)
 
-    def __init__(self, username, password,usertype,useremail):
+    def __init__(self, username,password,usertype,useremail):
     
         self.username = username.lower()
         self.password = bcrypt.generate_password_hash(password).decode('utf-8')

@@ -14,6 +14,17 @@
 </head>
 <body>
 
+<header>
+  <!-- navbar goes here -->
+  <nav>
+    <h1>Career Services Application</h1>
+    <ul>
+      <li><button class="nav-btn" id="about" href="#">About</a></li>
+      <li><button class="nav-btn" id="logout" type="submit">Logout</a></li>
+    </ul>
+  </nav>
+</header>
+
 <div id="successDiv" class="hidden px-8 py-6 bg-green-400 text-white flex justify-between rounded">
   <div class="flex items-center">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 mr-6" viewBox="0 0 20 20" fill="currentColor">
@@ -26,7 +37,7 @@
 </div>
 
 <!-- partial:index.partial.html -->
-<div class="flex">
+<div style="height: 100%; width:100%" class="flex">
   <div class="h-screen w-60 rounded-br-md rounded-tr-lg bg-primary p-4 antialiased">
     <div class="flex items-center gap-2">
       <div class="grid h-9 w-9 place-content-center rounded border border-primary-light bg-primary-light/50 text-xl text-white">UI</div>
@@ -38,7 +49,7 @@
       <svg class="ml-auto h-5 w-5 self-start fill-white" viewBox="0 0 24 24"><path d="M18.2073 9.04304 12.0002 2.83594 5.79312 9.04304 7.20733 10.4573 12.0002 5.66436 16.7931 10.4573 18.2073 9.04304ZM5.79297 14.9574 12.0001 21.1646 18.2072 14.9574 16.793 13.5432 12.0001 18.3361 7.20718 13.5432 5.79297 14.9574Z"></path></svg>
     </div>
 
-    <ul class="mt-10 flex w-full flex-col gap-3">
+    <ul class="mt-10 flex w-full flex-col gap-3>
       <li>
         <a href="#" id="dashboard" class="flex items-center gap-2 rounded-md border border-primary-light bg-primary-light/40 hover:bg-primary-light/40 px-3 py-2 text-primary-white">
           <svg class="h-5 w-5 fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 3V19H21V21H3V3H5ZM20.2929 6.29289L21.7071 7.70711L16 13.4142L13 10.415L8.70711 14.7071L7.29289 13.2929L13 7.58579L16 10.585L20.2929 6.29289Z"></path></svg>
@@ -83,7 +94,7 @@
       </div>
     
     <!-- JOB POSTING FORM -->
-    <div id="postJob" class="w-full max-w-xl mx-auto invisible m-2" style="position: absolute;">
+    <div id="postJob" class="w-full max-w-xl mx-auto m-2" style="position: absolute;">
       <form id="jobPosting" action="#">
         <h1 class="text-2xl mb-2">Post new job</h1>
         
@@ -175,13 +186,17 @@
   </div>
     <br>
 </div>
+
+<footer>
+  <p>&copy; 2023 Career Services Application. - Developed by Team ProjectK. - All rights reserved. </p>
+</footer>
+
 <!-- partial -->
 <script src='https://cdn.tailwindcss.com'></script>
 <script src='https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.12.3/cdn.js'></script>
 <script src="{{ url_for('static',filename='scripts/dashboard.js') }}"> </script>
 <script src="{{ url_for('static',filename='scripts/controllers.js') }}"></script>
-
 
 </body>
 </html>
