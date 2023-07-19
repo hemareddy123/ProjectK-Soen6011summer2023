@@ -6,12 +6,12 @@ This project aims to provide a platform for career services where students and j
 ## Team Information
 | S. No. | Name (Student ID) | GitHub Username | Role |
 |--------------------------------------------------------------|-------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|--------------|
-| 1 | Praful Peethambaran Nair (40226483) | prafulnair | Developer/Team Lead |
-| 2 | Revanth Velagandula (40229629) | Revanthguptha27 | Developer/QA |
-| 3 | Hema Reddy (40236911) | hemareddy123 | Developer |
-| 4 |Dikshant Yadav (40221623)  | 005dikshant | Developer/Tester |
-| 5 | Himanshu Rathod (40234325) | himi98 | Developer/QA |
-| 6 | Tanay Srivastava (40234148) | tanaysrivastava0903 | Developer |
+| 1 | Praful Peethambaran Nair (40226483) | prafulnair | Scrum Master/Team Lead |
+| 2 | Revanth Velagandula (40229629) | Revanthguptha27 | QA Analyst |
+| 3 | Hema Reddy (40236911) | hemareddy123 | Product Manager  |
+| 4 |Dikshant Yadav (40221623)  | 005dikshant | Design Analyst |
+| 5 | Himanshu Rathod (40234325) | himi98 | QA Analyst |
+| 6 | Tanay Srivastava (40234148) | tanaysrivastava0903 | Software Architect |
 
 
 ## Technologies, Frameworks used
