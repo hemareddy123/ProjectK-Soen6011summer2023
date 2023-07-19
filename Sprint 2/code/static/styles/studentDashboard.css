@@ -5,4 +5,9 @@
     background-size: cover;
 } */
 
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
 [x-cloak] { display: none !important; }

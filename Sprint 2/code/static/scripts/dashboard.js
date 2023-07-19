@@ -19,15 +19,23 @@ let simpleMde = new SimpleMDE({
   element: document.getElementById("description")
 })
 
-$("#addJob, #dashboard, #candidates, #settings").click(function(event) {
-  event.preventDefault();
-  $("#addJob, #dashboard, #candidates, #settings").removeClass("border border-primary-light bg-primary-light/40");
-  $(this).addClass("border border-primary-light bg-primary-light/40");
-})
+const mapping = {
+  'addJob' : 'postJob',
+  'dashboard' : 'listings',
+  'allCandidates' : 'studentTable',
+  'selectedCandidates' : 'selectedStudentTable'
+}
 
-$("#addJob, #dashboard").click(function(event) {
-  event.stopPropagation();
-  $("#listings, #postJob").toggleClass("hidden");
+$("#addJob, #dashboard, #allCandidates, #selectedCandidates").click(function(event) {
+  event.preventDefault();
+  $("#addJob, #dashboard, #studentTable, #selectedCandidates").removeClass("border border-primary-light bg-primary-light/40");
+  $(this).addClass("border border-primary-light bg-primary-light/40");
+  
+  $("#listings, #postJob, #studentTable, #selectedStudentTable").removeClass("hidden");
+  $("#listings, #postJob, #studentTable, #selectedStudentTable").addClass("hidden");
+  targetDivID = "#" + mapping[$(this).attr("id")]
+  $(targetDivID).removeClass("hidden");
+  
 })
 
   

@@ -2,6 +2,10 @@ from db import db
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt()
 
+emp_stu = db.Table('emp_stu',
+    db.Column('emp_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
+    db.Column('stud_id', db.Integer, db.ForeignKey('student.id'), primary_key=True)
+)
 class User(db.Model):
     __tablename__ = 'user'
 
@@ -10,6 +14,9 @@ class User(db.Model):
     password = db.Column(db.String(150), nullable=False)
     usertype = db.Column(db.String(10), nullable=False)
     useremail = db.Column(db.String(20), nullable=False)
+
+
+    selected_students = db.relationship('Student',secondary='emp_stu')
 
     def __init__(self, username, password,usertype,useremail):
     
@@ -25,5 +32,9 @@ class User(db.Model):
     @classmethod
     def get_user_by_username(cls, username_):
         return cls.query.filter_by(username=username_).first()
+    
+    @classmethod
+    def get_user_by_id(cls, id_):
+        return cls.query.filter_by(id=id_).first()
 
 
