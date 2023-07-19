@@ -1,0 +1,58 @@
+
+body, html {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Setting the background color to purple */
+  body {
+    background-color: purple;
+  }
+  
+  /* Centering the main container */
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  /* Centering the input containers */
+  .input-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Styling the search box inputs */
+  input[type="text"] {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px;
+    text-align: center;
+  }
+  
+  /* Centering the placeholder text */
+  input[type="text"]::placeholder {
+    text-align: center;
+  }
+  
+  /* Styling the button container */
+  .btn {
+    background-color: #007BFF;
+    padding: 10px;
+    border-radius: 5px;
+  
+  /* Styling the search button icon */
+  .btn a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  /* Centering the button icon */
+  .btn {
+    text-align: center;
+  }
+  
