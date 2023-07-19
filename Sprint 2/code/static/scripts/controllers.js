@@ -92,5 +92,41 @@ $('#jobPosting').submit(function(event) {
             console.error(error);
         }
     });
-
 });
+
+$('.selectCandidate').click(function(event) {
+    event.preventDefault();
+    var empId = $(this).data('emp-id');
+    var studId = $(this).data('student-id');
+    //var clickedElement = $(this);
+    //clickedElement.addClass('disabled-link');
+
+    var formData = {
+        'emp_id' : empId,
+        'stud_id' : studId
+    }
+
+
+    $.ajax({
+        url: 'http://127.0.0.1:5000/selectStudent',
+        type: 'POST',
+        data: JSON.stringify(formData),
+        contentType: 'application/json',
+        success: function (response) {
+            // Handle the response from the server
+
+            $('.selectCandidate').addClass('disabled-link');
+
+            $("#toast-success").fadeIn(500,function(){
+                setTimeout(function() {
+                    $("#toast-success").fadeOut(500);
+                },2000);
+            })
+        },
+        error: function (error) {
+            // Handle any errors that occur during the request
+            console.error(error);
+        }
+    });
+    
+})

@@ -5,11 +5,9 @@
     background-size: cover;
 } */
 
-.disabled-link {
-    pointer-events: none;
-    color: #808080;
-    text-decoration: none;
-    cursor: not-allowed;
-  }
-
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
 [x-cloak] { display: none !important; }
