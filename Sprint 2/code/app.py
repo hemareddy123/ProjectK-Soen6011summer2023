@@ -33,9 +33,13 @@ def emp_dashboard():
     jobs = JobPosting.get_all_jobs()
     students = Student.get_all_students()
     selectedStudents = emp.selected_students
-    print("selected Students ")
-    print(selectedStudents)
-    return render_template('empDashboard.html',empId=emp.id,username=emp.username,email=emp.useremail,jobs=jobs,students=students)
+    return render_template('empDashboard.html',
+                            empId=emp.id,
+                            username=emp.username,
+                            email=emp.useremail,
+                            jobs=jobs,
+                            students=students,
+                            selectedStudents=selectedStudents)
 
 @app.route('/student_dashboard')
 def student_dashboard():

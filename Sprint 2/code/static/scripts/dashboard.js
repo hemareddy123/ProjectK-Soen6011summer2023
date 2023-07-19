@@ -28,7 +28,7 @@ const mapping = {
 
 $("#addJob, #dashboard, #allCandidates, #selectedCandidates").click(function(event) {
   event.preventDefault();
-  $("#addJob, #dashboard, #studentTable, #selectedCandidates").removeClass("border border-primary-light bg-primary-light/40");
+  $("#addJob, #dashboard, #allCandidates, #selectedCandidates").removeClass("border border-primary-light bg-primary-light/40");
   $(this).addClass("border border-primary-light bg-primary-light/40");
   
   $("#listings, #postJob, #studentTable, #selectedStudentTable").removeClass("hidden");
@@ -38,4 +38,3 @@ $("#addJob, #dashboard, #allCandidates, #selectedCandidates").click(function(eve
   
 })
 
-  
