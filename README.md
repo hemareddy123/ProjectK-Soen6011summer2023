@@ -20,5 +20,5 @@ This project aims to provide a platform for career services where students and j
 2. Backend: Python, Flask
 3. Database: Sqlite or MySql
 
-# Project Approach
+## Project Approach
 The Career Services App employs a well-structured Model-View-Controller (MVC) architecture with Python Flask as the backend and HTML, CSS, and JavaScript for the frontend. User interactions and application logic are handled through REST APIs, ensuring scalability and maintainability. Some of the key features implemented in sprint 2 are Login, Registration, Job Posting, Candidate Management, and Skills-Based Shortlisting. The Controller seamlessly communicates with the Model layer (SQLite3 and SQLAlchemy) for efficient CRUD operations on the database. This approach fosters user-friendly interactions while effectively connecting employers with students, making the app a reliable and accessible career services platform.
