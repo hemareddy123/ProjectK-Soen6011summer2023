@@ -13,12 +13,18 @@ signupBtn.onclick = () => {
   signupForm.style.display = 'block'
   loginForm.style.marginLeft = '-50%'
   loginText.style.marginLeft = '-50%'
+  loginBtn.style.color='#232323';
+  loginBtn.style.backgroundColor='white';
+  signupBtn.style.backgroundColor='#fcb900';
 }
 
 loginBtn.onclick = () => {
   loginForm.style.display = 'block'
   loginForm.style.marginLeft = '0%'
   loginText.style.marginLeft = '0%'
+  signupBtn.style.color='#232323';
+  signupBtn.style.backgroundColor='white';
+  loginBtn.style.backgroundColor='#fcb900';
   delysignup()
 }
 
@@ -73,7 +79,26 @@ email.addEventListener('keydown',()=>{
   }
 })
 
+// grab everything we need
+const btn = document.querySelector("button.mobile-menu-button");
+const menu = document.querySelector(".mobile-menu");
 
+// add event listeners
+// btn.addEventListener("click", () => {
+//   menu.classList.toggle("hidden");
+// });
 
+// Get the elements
+const aboutButton = document.getElementById('about');
+const popupContainer = document.getElementById('popupContainer');
+const closeButton = document.getElementById('closeButton');
 
+// Event listener for the open button
+aboutButton.addEventListener('click', function() {
+  popupContainer.style.display = 'block';
+});
 
+// Event listener for the close button
+closeButton.addEventListener('click', function() {
+  popupContainer.style.display = 'none';
+});
