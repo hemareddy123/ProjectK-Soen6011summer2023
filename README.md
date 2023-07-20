@@ -8,9 +8,9 @@ This project aims to provide a platform for career services where students and j
 |--------------------------------------------------------------|-------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|--------------|
 | 1 | Praful Peethambaran Nair (40226483) | prafulnair | Scrum Master/Team Lead |
 | 2 | Revanth Velagandula (40229629) | Revanthguptha27 | QA Analyst |
-| 3 | Hema Reddy (40236911) | hemareddy123 | Product Manager  |
+| 3 | Hema Reddy (40236911) | hemareddy123 | Product Owner  |
 | 4 |Dikshant Yadav (40221623)  | 005dikshant | Design Analyst |
-| 5 | Himanshu Rathod (40234325) | himi98 | QA Analyst |
+| 5 | Himanshu Rathod (40234325) | himi98 | Project Manager |
 | 6 | Tanay Srivastava (40234148) | tanaysrivastava0903 | Software Architect |
 
 
