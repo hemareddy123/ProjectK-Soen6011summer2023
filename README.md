@@ -1,4 +1,5 @@
 # ProjectK-Soen6011summer2023
+
 # Career Services Application
 This project aims to provide a platform for career services where students and job seekers can post their portfolios and shortlist jobs according to their preference, while employers can also post jobs on behalf of their institution and can shortlist prospective candidates according to their needs. This is a web application that would allow different users (job seekers, employers and admin) to interact with the interface and use different features like posting a new job, shortlisting candidates (for employers) and creating a new resume, updating the resume and applying and shortlisting jobs (for job-seekers). This application would require the user to have a PC with a decent internet connection. In order to avail of these services from the platform, all users have to create an account by using email and password. Once the account is created, users can just log in to access the services. The main users, for now, involve Employers, Students/Job seekers and admins, who will manage all profiles, job postings etc. 
 
@@ -18,3 +19,6 @@ This project aims to provide a platform for career services where students and j
 1. Frontend: HTML5, CSS, Javascript
 2. Backend: Python, Flask
 3. Database: Sqlite or MySql
+
+# Project Approach
+The Career Services App employs a well-structured Model-View-Controller (MVC) architecture with Python Flask as the backend and HTML, CSS, and JavaScript for the frontend. User interactions and application logic are handled through REST APIs, ensuring scalability and maintainability. Some of the key features implemented in sprint 2 are Login, Registration, Job Posting, Candidate Management, and Skills-Based Shortlisting. The Controller seamlessly communicates with the Model layer (SQLite3 and SQLAlchemy) for efficient CRUD operations on the database. This approach fosters user-friendly interactions while effectively connecting employers with students, making the app a reliable and accessible career services platform.
