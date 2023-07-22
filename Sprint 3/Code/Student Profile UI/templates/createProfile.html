@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Page Title</title>
+  <!-- Link to your CSS file -->
+  <link rel="stylesheet" href="createProfile.css">
+  <!-- Add any other required meta tags, stylesheets, or scripts here -->
+</head>
+<body>
+<script src="createProfil.js"></script>
+  <main>
+    <form id="register" method="post" enctype="multipart/form-data">
+    <h2 id="register__title">Create your Student profile</h2>
+    <div class="register__box">
+      <label for="user">Full Name<i class="fas fa-asterisk"></i></label>
+      <input id="user" type="text" maxLength="64" required placeholder="Name">
+    </div>
+
+    <label for="Education">Select your highest level of education:</label>
+    <select name="education" id="education">
+      <option value="phd">PhD</option>
+      <option value="Masters">Masters</option>
+      <option value="UnderGraduate">Under Graduate</option>
+      <option value="HighSchool" selected>High School</option>
+    </select>
+
+    <div class="register__box">
+      <label for="user">Experience<i class="fas fa-asterisk"></i></label>
+      <input id="user" type="text" maxLength="64" required placeholder="Add your Experiences : Experience 1, Experience 2,..">
+    </div>
+    <div class="register__box">
+      <label for="password">Skills<i class="fas fa-asterisk"></i></label>
+      <input id="password" type="password" minLength="6" required placeholder="Skill1, Skill2, Skill3,..">
+    </div>
+
+    <div class="register__box">
+      <label for="mail">E-mail<i class="fas fa-asterisk"></i></label>
+      <input id="mail" type="email" size="64" maxLength="64" required placeholder="Example@gmail.com" pattern=".+@gmail.com" title="Example@gmail.com">
+    </div>
+
+    <div class="register__box conteiner__check">
+      <label for="genders">Gender</label>
+      <ul class="conteiner__check">
+        <li>
+          <input id="female" name="gender" type="radio" value="Female">
+          <label for="female">Female</label>
+        </li>
+        <li>
+          <input id="male" name="gender" type="radio" value="Male">
+          <label for="male">Male</label>
+        </li>
+        <li>
+          <input id="other" name="gender" type="radio" value="Other">
+          <label for="other">Other</label>
+        </li>
+      </ul>
+    </div>
+    <div class="register__box">
+      <label for="age">Age</label>
+      <input id="age" type="date" minLength="2">
+    </div>
+    <div class="register__box">
+      <label for="image">Choose profile picture</label>
+      <input type="file" id="image" name="image" accept="image/*">
+      <div id="preview">
+          <p>No files currently selected for upload</p>
+      </div>
+    </div>
+    <input type="button" value="Create profile" id="register__btn">
+    </form>
+    <div id="overlay" class="hidden">
+      <div id="avatar"></div>
+    </div>
+  </main>
+  <script crossorigin='anonymous' src='https://kit.fontawesome.com/85274771d6.js'></script>
+</body>
