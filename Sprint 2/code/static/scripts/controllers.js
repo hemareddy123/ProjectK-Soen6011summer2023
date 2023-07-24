@@ -136,3 +136,22 @@ $('.selectCandidate').click(function(event) {
     });
     
 })
+
+$('#createProfile').click(function(event) {
+    event.preventDefault();
+
+    const formData = {
+        username: $('#user').val(),
+        education: $('#education').val(),
+        experience: $('#experience').val(),
+        achievments: $('#achievments').val(),
+        mail: $('#mail').val(),
+        age: $('#age').val(),
+        address: $('#address').val(),
+        phone: $('#phone').val(),
+        gender: $('input[name="gender"]:checked').val(),
+    }
+
+    console.log(formData);
+    
+})
