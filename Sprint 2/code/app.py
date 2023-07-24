@@ -17,7 +17,7 @@ db.init_app(app)
 
 @app.before_first_request
 def create_tables():
-    db.drop_all()
+    #db.drop_all()
     db.create_all()
 
 api = Api(app)
@@ -43,11 +43,18 @@ def emp_dashboard():
 
 @app.route('/studentProfileForm')
 def studentProfileForm():
-    return render_template('studentProfileForm.html')
+    userId = request.args.get('id')
+    user = User.get_user_by_id(userId)
+    return render_template('studentProfileForm.html',user=user)
 
 @app.route('/studentDashBoard')
 def student_dashboard():
-    return render_template('studentDashboard.html')
+    studentId = request.args.get('id')
+    user = request.args.get('userId')
+    student = Student.get_user_by_id(studentId)
+    user = User.get_user_by_id(user)
+    jobs = JobPosting.get_all_jobs()
+    return render_template('studentDashboard.html',student=student,jobs=jobs,user=user)
 
 @app.route('/studentProfile')
 def student_profile():
@@ -55,8 +62,6 @@ def student_profile():
     student = Student.get_user_by_id(studentId)
     return render_template('studentProfile.html',student=student)
 
-def student_dashboard():
-    username = request.args.get()
 
 api.add_resource(UserLogin,"/login")
 api.add_resource(CrUser,"/signUp")

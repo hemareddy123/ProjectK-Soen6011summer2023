@@ -15,6 +15,4 @@ tailwind.config = {
     plugins: [],
   }
 
-let simpleMde = new SimpleMDE({
-  element: document.getElementById("description")
-})
+
