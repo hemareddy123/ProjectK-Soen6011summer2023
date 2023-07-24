@@ -49,43 +49,43 @@
         <h1>Candidate Profile</h1>
         <div class="profile-field">
             <label>ID:</label>
-            <span>12345</span>
+            <span> {{ student.id }}</span>
         </div>
         <div class="profile-field">
             <label>Username:</label>
-            <span>JohnDoe</span>
+            <span> {{ student.username }}</span>
         </div>
         <div class="profile-field">
             <label>Highest Qualification:</label>
-            <span>Master's Degree</span>
+            <span> {{ student.highestQualification }} Degree</span>
         </div>
         <div class="profile-field">
             <label>Work Experience:</label>
-            <span>5 years</span>
+            <span> {{ student.work_experience }}</span>
         </div>
         <div class="profile-field">
             <label>Achievements:</label>
-            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+            <span> {{ student.achivements }} </span>
         </div>
         <div class="profile-field">
             <label>Email:</label>
-            <span>john@example.com</span>
+            <span> {{ student.email }}</span>
         </div>
         <div class="profile-field">
             <label>Gender:</label>
-            <span>Male</span>
+            <span> {{ student.gender }}</span>
         </div>
         <div class="profile-field">
-            <label>Age:</label>
-            <span>30</span>
+            <label>Date Of Birth:</label>
+            <span> {{ student.age }}</span>
         </div>
         <div class="profile-field">
             <label>Address:</label>
-            <span>123 Main Street, City, Country</span>
+            <span> {{ student.address }}</span>
         </div>
         <div class="profile-field">
             <label>Phone:</label>
-            <span>+1 123-456-7890</span>
+            <span>+1 {{ student.phone }}</span>
         </div>
     </div>
 </body>
