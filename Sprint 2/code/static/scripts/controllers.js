@@ -51,9 +51,12 @@ $('#loginForm').submit(function(event) {
         success: function (response) {
             // Handle the response from the server
             message = response.message;
+            userType = response.type;
             console.log(response);
-            if(message === 'success'){
+            if(message === 'success' && userType === 'employer'){
                window.location.href = response.redirect_url + "?username="+response.name;
+            }else if(message === 'success' && userType === 'student'){
+                window.location.href = response.redirect_url;
             }
         },
         error: function (error) {
@@ -142,15 +145,31 @@ $('#createProfile').click(function(event) {
 
     const formData = {
         username: $('#user').val(),
-        education: $('#education').val(),
-        experience: $('#experience').val(),
-        achievments: $('#achievments').val(),
-        mail: $('#mail').val(),
+        highestQualification: $('#education').val(),
+        work_experience: $('#experience').val(),
+        achivements: $('#achievments').val(),
+        email: $('#mail').val(),
+        gender: $('input[name="gender"]:checked').val(),
         age: $('#age').val(),
         address: $('#address').val(),
-        phone: $('#phone').val(),
-        gender: $('input[name="gender"]:checked').val(),
+        phone: $('#phone').val()     
     }
+
+    $.ajax({
+        url: 'http://127.0.0.1:5000/studentProfilePostReq',
+        type: 'POST',
+        data: JSON.stringify(formData),
+        contentType: 'application/json',
+        success: function (response) {
+            // Handle the response from the server
+            console.log(response);
+            window.location.href = 'http://127.0.0.1:5000/studentProfile' + "?id="+response.studentId;
+        },
+        error: function (error) {
+            // Handle any errors that occur during the request
+            console.error(error);
+        }
+    });
 
     console.log(formData);
     

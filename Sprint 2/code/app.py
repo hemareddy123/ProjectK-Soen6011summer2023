@@ -41,11 +41,19 @@ def emp_dashboard():
                             students=students,
                             selectedStudents=selectedStudents)
 
-@app.route('/studentProfile')
-def student_dashboard():
+@app.route('/studentProfileForm')
+def studentProfileForm():
     return render_template('studentProfileForm.html')
 
+@app.route('/studentDashBoard')
+def student_dashboard():
+    return render_template('studentDashboard.html')
 
+@app.route('/studentProfile')
+def student_profile():
+    studentId = request.args.get('id')
+    student = Student.get_user_by_id(studentId)
+    return render_template('studentProfile.html',student=student)
 
 def student_dashboard():
     username = request.args.get()
@@ -53,7 +61,7 @@ def student_dashboard():
 api.add_resource(UserLogin,"/login")
 api.add_resource(CrUser,"/signUp")
 api.add_resource(CrJobPosting,"/postJob")
-api.add_resource(CrStudent,"/studentProfile")
+api.add_resource(CrStudent,"/studentProfilePostReq")
 api.add_resource(CrEmpStud,"/selectStudent")
 
 if __name__ == '__main__':

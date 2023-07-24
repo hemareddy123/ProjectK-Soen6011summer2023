@@ -16,14 +16,14 @@ class Student(db.Model):
     phone = db.Column(db.String(15), nullable=True)
     
 
-    def __init(self,username,highestQualification,work_experience,achievements,email,gender,age,address,phone):
+    def __init__(self,username,highestQualification,work_experience,achivements,email,gender,age,address,phone):
         self.username = username
         self.highestQualification = highestQualification
         self.work_experience = work_experience
-        self.achievements = achievements
+        self.achivements = achivements
         self.email = email
         self.gender = gender
-        self.age = age
+        self.age = datetime.strptime(age, "%Y-%m-%d")
         self.address = address
         self.phone = phone
 
