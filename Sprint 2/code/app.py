@@ -17,7 +17,7 @@ db.init_app(app)
 
 @app.before_first_request
 def create_tables():
-    #db.drop_all()
+    db.drop_all()
     db.create_all()
 
 api = Api(app)
@@ -41,9 +41,10 @@ def emp_dashboard():
                             students=students,
                             selectedStudents=selectedStudents)
 
-@app.route('/student_dashboard')
+@app.route('/studentProfile')
 def student_dashboard():
-    return render_template('studentDashboard.html')
+    return render_template('studentProfileForm.html')
+
 
 
 def student_dashboard():
