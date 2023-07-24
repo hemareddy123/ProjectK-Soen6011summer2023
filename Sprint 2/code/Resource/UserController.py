@@ -22,7 +22,7 @@ class UserLogin(Resource):
             if user.usertype == "employer":
                 return {'message' : 'success','type':'employer', 'name' : user.username, 'redirect_url': url_for('emp_dashboard')}
             elif user.usertype == "student":
-                return {'message' : 'success','type':'student' ,'redirect_url': url_for('studentProfileForm')}
+                return {'message' : 'success','type':'student' ,'userId' : user.id,'redirect_url': url_for('studentProfileForm')}
             
             return "user logined success"
         else:

@@ -56,7 +56,7 @@ $('#loginForm').submit(function(event) {
             if(message === 'success' && userType === 'employer'){
                window.location.href = response.redirect_url + "?username="+response.name;
             }else if(message === 'success' && userType === 'student'){
-                window.location.href = response.redirect_url;
+                window.location.href = response.redirect_url + "?id="+response.userId;
             }
         },
         error: function (error) {
@@ -154,6 +154,7 @@ $('#createProfile').click(function(event) {
         address: $('#address').val(),
         phone: $('#phone').val()     
     }
+    var userId = $('#mylink').data('user-id');
 
     $.ajax({
         url: 'http://127.0.0.1:5000/studentProfilePostReq',
@@ -162,15 +163,12 @@ $('#createProfile').click(function(event) {
         contentType: 'application/json',
         success: function (response) {
             // Handle the response from the server
-            console.log(response);
-            window.location.href = 'http://127.0.0.1:5000/studentProfile' + "?id="+response.studentId;
+            window.location.href = 'http://127.0.0.1:5000/studentDashBoard' + "?id="+response.studentId + "&userId="+userId;
         },
         error: function (error) {
             // Handle any errors that occur during the request
             console.error(error);
         }
     });
-
-    console.log(formData);
     
 })
