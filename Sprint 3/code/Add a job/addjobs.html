@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Post Your Job</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="2.styling.css" rel="stylesheet">
+        <style>
+            .header{
+                margin-top:55px;
+                text-align: center;
+            }
+            .header p{
+                color: white;
+            }
+            body{
+                background-image: url(https://ak.picdn.net/shutterstock/videos/29307697/thumb/1.jpg);
+            }
+            h1{
+                letter-spacing: 1.5px;
+                color: white;
+            }            
+            #form1{
+                background-color: rgba(255,255,255,0.7);
+                width: 50%;
+                margin: 50px auto;
+                padding: 10px;
+                box-shadow: 0 0 4px 4px #a2a3ab;
+                border-radius: 5px;
+                height:auto;
+            }
+            select{
+                background-image: linear-gradient(to right, lightblue , lavender);
+                height: 35px;
+                border-radius: 8px;
+            }
+            input[type="text"]{
+                width: 400px;
+            }
+        </style>
+    </head>
+    <body style="font-size:16px">
+    <nav role="navigation" class="navbar navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">CSP</a>
+            <button type="button" class="navbar-toggle" data-target="#navbarCollapse" data-toggle="collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbarCollapse">
+            <ul class="nav navbar-nav">
+                <li><a href="9.profile.php"><span class="glyphicon glyphicon-user"></span> PROFILE</a></li>
+                
+            </ul>
+            
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">LOGGED IN AS <b><?php echo $_SESSION['username']?></b></a></li>
+                <li><a href="1.home.php?logout=1"><span class="glyphicon glyphicon-log-out"></span> LOGOUT</a></li>
+            </ul>
+        </div>
+    </div>
+    </nav>
+
+    <div class="header"><h1><u><i>ADD A JOB</i></u></h1>
+        <p style="font-size:18px;">Add jobs for them to be visible to the students/job-seekers.</p>
+    </div>
+    
+    <div class="resultStudents">
+        <div id="form1">
+            <form method="post">            
+                <label for="classtitle">Job Title : </label>
+                <input type="text" placeholder="Class Title" name="classtitle"><br><br>
+
+                <label for="classdesc">Job Description : </label><br>
+                <textarea rows="2" cols="45" placeholder="Class Description" name="classdesc"></textarea><br><br>
+                
+                <label for="classrequirements">Job Skills : </label><br>
+                <textarea rows="2" cols="45" placeholder="Class Requirements" name="classrequirements"></textarea><br><br>
+                
+                
+                
+                <label for="trainingcost">Salary : </label>
+                <input type="number" placeholder="Training Cost" name="trainingcost" step="500"><br><br>
+
+                <label for="location">Location : </label>
+                <select name="location" id="location">
+                  <option value="" selected>---Select Location from the Dropdown---</option>
+                  <option value="Montreal">Montreal</option>
+                  <option value="Toronto">Toronto</option>
+                  <option value="Vancouver">Vancouver</option>
+                  <option value="Ottawa">Ottawa</option>
+                </select><br><br>                
+
+                <input type="submit" class="btn btn-success btn-lg" value="ADD" name="add" id="add">
+            </form>
+            
+        </div>
+    </div> 
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="10.profile.js"></script>
+    </body>
+</html>
