@@ -9,6 +9,8 @@ from Models.Student import Student
 from Resource.UserController import CrUser,UserLogin
 from Resource.JobPostController import CrJobPosting
 from Resource.StudentController import CrStudent
+from Resource.AdminController import ShowAllUsers
+
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
@@ -17,7 +19,7 @@ db.init_app(app)
 
 @app.before_first_request
 def create_tables():
-    #db.drop_all()
+    # db.drop_all()
     db.create_all()
 
 api = Api(app)
@@ -41,6 +43,16 @@ def emp_dashboard():
                             students=students,
                             selectedStudents=selectedStudents)
 
+@app.route('/admin_dashboard')
+def admin_dashboard():
+    username = request.args.get('username')
+    user=User.get_user_by_username(username)
+    users = User.get_all_users()
+    return render_template('adminDashboard.html',
+                            username=username,
+                            email=user.useremail,
+                            users=users)
+ 
 @app.route('/studentProfileForm')
 def studentProfileForm():
     userId = request.args.get('id')
@@ -61,6 +73,9 @@ def student_profile():
     studentId = request.args.get('id')
     student = Student.get_user_by_id(studentId)
     return render_template('studentProfile.html',student=student)
+  
+def student_dashboard():
+    username = request.args.get()
 
 
 api.add_resource(UserLogin,"/login")
@@ -68,6 +83,8 @@ api.add_resource(CrUser,"/signUp")
 api.add_resource(CrJobPosting,"/postJob")
 api.add_resource(CrStudent,"/studentProfilePostReq")
 api.add_resource(CrEmpStud,"/selectStudent")
+api.add_resource(ShowAllUsers,"/showAllUsers")
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
+

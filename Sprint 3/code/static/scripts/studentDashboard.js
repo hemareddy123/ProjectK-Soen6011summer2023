@@ -14,5 +14,3 @@ tailwind.config = {
     },
     plugins: [],
   }
-
-

@@ -13,7 +13,7 @@ class JobPosting(db.Model):
     jobType = db.Column(db.String(10), nullable=False)
 
     def __init__(self, title, description,startDate,endDate,location,jobType):
-
+      
         self.title = title.lower()
         self.description = description.lower()
         self.location = location.lower()

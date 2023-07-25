@@ -20,12 +20,14 @@ class UserLogin(Resource):
         user = User.get_user_by_username(data['username'])
         if user and bcrypt.check_password_hash(user.password,data['password']):
             if user.usertype == "employer":
-                return {'message' : 'success','type':'employer', 'name' : user.username, 'redirect_url': url_for('emp_dashboard')}
+                return {'message' : 'success', 'name' : user.username, 'redirect_url': url_for('emp_dashboard')}
+            if user.usertype == "admin":
+                return {'message' : 'success', 'name' : user.username, 'redirect_url': url_for('admin_dashboard')}
             elif user.usertype == "student":
                 return {'message' : 'success','type':'student' ,'userId' : user.id,'redirect_url': url_for('studentProfileForm')}
             
-            return "user logined success"
+            return "user logged in successfully"
         else:
-            return "login failure"
+            return "login failed"
 
 
