@@ -21,11 +21,13 @@ class UserLogin(Resource):
         if user and bcrypt.check_password_hash(user.password,data['password']):
             if user.usertype == "employer":
                 return {'message' : 'success', 'name' : user.username, 'redirect_url': url_for('emp_dashboard')}
+            if user.usertype == "admin":
+                return {'message' : 'success', 'name' : user.username, 'redirect_url': url_for('admin_dashboard')}
             elif user.usertype == "student":
                 return {'message' : 'success', 'name': user.username, 'redirect_url': url_for('student_dashboard')}
             
-            return "user logined success"
+            return "user logged in successfully"
         else:
-            return "login failure"
+            return "login failed"
 
 
