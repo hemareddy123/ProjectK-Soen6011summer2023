@@ -234,7 +234,7 @@ input[type="checkbox"]:checked {
 }
 
 /* Register button styles */
-#register__btn {
+#createProfile {
   cursor: pointer;
 }
 
