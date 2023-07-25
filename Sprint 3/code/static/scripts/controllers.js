@@ -51,9 +51,12 @@ $('#loginForm').submit(function(event) {
         success: function (response) {
             // Handle the response from the server
             message = response.message;
+            userType = response.type;
             console.log(response);
-            if(message === 'success'){
+            if(message === 'success' && userType === 'employer'){
                window.location.href = response.redirect_url + "?username="+response.name;
+            }else if(message === 'success' && userType === 'student'){
+                window.location.href = response.redirect_url + "?id="+response.userId;
             }
         },
         error: function (error) {
@@ -136,3 +139,37 @@ $('.selectCandidate').click(function(event) {
     });
     
 })
+
+$('#createProfile').click(function(event) {
+    event.preventDefault();
+
+    const formData = {
+        username: $('#user').val(),
+        highestQualification: $('#education').val(),
+        work_experience: $('#experience').val(),
+        achivements: $('#achievments').val(),
+        email: $('#mail').val(),
+        gender: $('input[name="gender"]:checked').val(),
+        age: $('#age').val(),
+        address: $('#address').val(),
+        phone: $('#phone').val()     
+    }
+    var userId = $('#mylink').data('user-id');
+
+    $.ajax({
+        url: 'http://127.0.0.1:5000/studentProfilePostReq',
+        type: 'POST',
+        data: JSON.stringify(formData),
+        contentType: 'application/json',
+        success: function (response) {
+            // Handle the response from the server
+            window.location.href = 'http://127.0.0.1:5000/studentDashBoard' + "?id="+response.studentId + "&userId="+userId;
+        },
+        error: function (error) {
+            // Handle any errors that occur during the request
+            console.error(error);
+        }
+    });
+    
+})
+

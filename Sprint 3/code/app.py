@@ -10,6 +10,7 @@ from Resource.UserController import CrUser,UserLogin
 from Resource.JobPostController import CrJobPosting
 from Resource.StudentController import CrStudent
 from Resource.AdminController import ShowAllUsers
+
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
@@ -42,10 +43,6 @@ def emp_dashboard():
                             students=students,
                             selectedStudents=selectedStudents)
 
-@app.route('/student_dashboard')
-def student_dashboard():
-    return render_template('studentDashboard.html')
-
 @app.route('/admin_dashboard')
 def admin_dashboard():
     username = request.args.get('username')
@@ -54,18 +51,40 @@ def admin_dashboard():
     return render_template('adminDashboard.html',
                             username=username,
                             email=user.useremail,
-                            users=users
-)
+                            users=users)
+ 
+@app.route('/studentProfileForm')
+def studentProfileForm():
+    userId = request.args.get('id')
+    user = User.get_user_by_id(userId)
+    return render_template('studentProfileForm.html',user=user)
 
+@app.route('/studentDashBoard')
+def student_dashboard():
+    studentId = request.args.get('id')
+    user = request.args.get('userId')
+    student = Student.get_user_by_id(studentId)
+    user = User.get_user_by_id(user)
+    jobs = JobPosting.get_all_jobs()
+    return render_template('studentDashboard.html',student=student,jobs=jobs,user=user)
+
+@app.route('/studentProfile')
+def student_profile():
+    studentId = request.args.get('id')
+    student = Student.get_user_by_id(studentId)
+    return render_template('studentProfile.html',student=student)
+  
 def student_dashboard():
     username = request.args.get()
+
 
 api.add_resource(UserLogin,"/login")
 api.add_resource(CrUser,"/signUp")
 api.add_resource(CrJobPosting,"/postJob")
-api.add_resource(CrStudent,"/studentProfile")
+api.add_resource(CrStudent,"/studentProfilePostReq")
 api.add_resource(CrEmpStud,"/selectStudent")
 api.add_resource(ShowAllUsers,"/showAllUsers")
 
 if __name__ == '__main__':
     app.run(debug=True)
+

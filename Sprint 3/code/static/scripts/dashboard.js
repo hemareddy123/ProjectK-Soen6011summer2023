@@ -57,4 +57,3 @@ $("#addJob, #dashboard, #allCandidates, #selectedCandidates, #showAllUsers").cli
 //       }
 //   });
 // })
-

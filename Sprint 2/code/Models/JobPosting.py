@@ -14,7 +14,6 @@ class JobPosting(db.Model):
 
     def __init__(self, title, description,startDate,endDate,location,jobType):
 
-        print("you camed?")
         self.title = title.lower()
         self.description = description.lower()
         self.location = location.lower()

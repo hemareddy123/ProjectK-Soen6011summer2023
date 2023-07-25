@@ -42,9 +42,21 @@ def emp_dashboard():
                             students=students,
                             selectedStudents=selectedStudents)
 
-@app.route('/student_dashboard')
+@app.route('/studentProfileForm')
+def studentProfileForm():
+    userId = request.args.get('id')
+    user = User.get_user_by_id(userId)
+    return render_template('studentProfileForm.html',user=user)
+
+@app.route('/studentDashBoard')
 def student_dashboard():
-    return render_template('studentDashboard.html')
+    studentId = request.args.get('id')
+    user = request.args.get('userId')
+    student = Student.get_user_by_id(studentId)
+    user = User.get_user_by_id(user)
+    jobs = JobPosting.get_all_jobs()
+    return render_template('studentDashboard.html',student=student,jobs=jobs,user=user)
+
 
 @app.route('/admin_dashboard')
 def admin_dashboard():
@@ -57,13 +69,18 @@ def admin_dashboard():
                             users=users
 )
 
-def student_dashboard():
-    username = request.args.get()
+@app.route('/studentProfile')
+def student_profile():
+    studentId = request.args.get('id')
+    student = Student.get_user_by_id(studentId)
+    return render_template('studentProfile.html',student=student)
+
+
 
 api.add_resource(UserLogin,"/login")
 api.add_resource(CrUser,"/signUp")
 api.add_resource(CrJobPosting,"/postJob")
-api.add_resource(CrStudent,"/studentProfile")
+api.add_resource(CrStudent,"/studentProfilePostReq")
 api.add_resource(CrEmpStud,"/selectStudent")
 api.add_resource(ShowAllUsers,"/showAllUsers")
 

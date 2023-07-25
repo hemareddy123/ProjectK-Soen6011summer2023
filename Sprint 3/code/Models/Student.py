@@ -1,22 +1,32 @@
 from db import db
 
+from datetime import datetime
+
+
 class Student(db.Model):
     __tablename__ = 'student'
 
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(50), nullable=False)
-    last_name = db.Column(db.String(50), nullable=False)
+    username = db.Column(db.Integer, nullable=True)
+    highestQualification = db.Column(db.Integer,nullable=True)
     work_experience = db.Column(db.Integer, nullable=True)
-    skills = db.Column(db.String(150), nullable=True)
-    salary = db.Column(db.String(15), nullable=True)
+    achivements = db.Column(db.String(150), nullable=True)
+    email = db.Column(db.String(15),nullable=True)
+    gender = db.Column(db.String(10), nullable=True)
+    age = db.Column(db.DateTime,nullable=True)
+    address = db.Column(db.String(50), nullable=True)
     phone = db.Column(db.String(15), nullable=True)
+    
 
-    def __init__(self,first_name,last_name,work_experience,skills,salary,phone):
-        self.first_name = first_name
-        self.last_name = last_name
+    def __init__(self,username,highestQualification,work_experience,achivements,email,gender,age,address,phone):
+        self.username = username
+        self.highestQualification = highestQualification
         self.work_experience = work_experience
-        self.skills = skills
-        self.salary = salary
+        self.achivements = achivements
+        self.email = email
+        self.gender = gender
+        self.age = datetime.strptime(age, "%Y-%m-%d")
+        self.address = address
         self.phone = phone
 
     def save_to_db(self):
