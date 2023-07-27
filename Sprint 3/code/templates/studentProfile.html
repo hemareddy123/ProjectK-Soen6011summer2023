@@ -87,6 +87,11 @@
             <label>Phone:</label>
             <span>+1 {{ student.phone }}</span>
         </div>
+        <div class="profile-field">
+            <label>Download Resume:</label>
+            <a href="{{ url_for('download_resume', id=student.id) }}"> Click to download </a>
+        </div>
+       
     </div>
 </body>
 </html>
