@@ -1,5 +1,8 @@
 from db import db
 from flask_bcrypt import Bcrypt
+import json
+from sqlalchemy import or_
+
 bcrypt = Bcrypt()
 
 emp_stu = db.Table('emp_stu',
@@ -29,6 +32,9 @@ class User(db.Model):
         db.session.add(self)
         db.session.commit()
 
+    def toJson(self):
+        return json.dumps(self, default=lambda o: o.__dict__)
+
     @classmethod
     def get_user_by_username(cls, username_):
         return cls.query.filter_by(username=username_).first()
@@ -36,5 +42,8 @@ class User(db.Model):
     @classmethod
     def get_user_by_id(cls, id_):
         return cls.query.filter_by(id=id_).first()
-
-
+    
+    @classmethod
+    def get_all_users(cls):
+        users=cls.query.filter(or_(cls.usertype=="employer", cls.usertype=="student")).all()
+        return users
