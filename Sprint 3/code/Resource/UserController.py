@@ -23,8 +23,8 @@ class UserLogin(Resource):
                 return {'message' : 'success', 'name' : user.username, 'redirect_url': url_for('emp_dashboard')}
             elif user.usertype == "admin":
                 return {'message' : 'success', 'name' : user.username, 'redirect_url': url_for('admin_dashboard')}
-            elif user.usertype == "student":
-                return {'message' : 'success', 'name': user.username, 'redirect_url': url_for('student_dashboard')}
+            # elif user.usertype == "student":
+            #     return {'message' : 'success', 'name': user.username, 'redirect_url': url_for('student_dashboard')}
             elif user.usertype == "student":
                 return {'message' : 'success','type':'student' ,'userId' : user.id,'redirect_url': url_for('studentProfileForm')}
             
