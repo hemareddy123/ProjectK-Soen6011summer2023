@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request
+from io import BytesIO
+from flask import Flask, render_template, request, send_file, Response
 from flask_restful import Api, Resource
 from db import db
 from Resource.EmpStudentController import CrEmpStud
@@ -11,6 +12,7 @@ from Resource.JobPostController import CrJobPosting
 from Resource.StudentController import CrStudent
 from Resource.AdminController import ShowAllUsers
 
+
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
@@ -19,7 +21,7 @@ db.init_app(app)
 
 @app.before_first_request
 def create_tables():
-    # db.drop_all()
+    #db.drop_all()
     db.create_all()
 
 api = Api(app)
@@ -73,7 +75,23 @@ def student_profile():
     studentId = request.args.get('id')
     student = Student.get_user_by_id(studentId)
     return render_template('studentProfile.html',student=student)
-  
+
+@app.route('/download_resume')
+def download_resume():
+    studentId = request.args.get('id')
+    print('student is '+ studentId)
+
+    student = Student.get_user_by_id(studentId)
+
+    resume_data = student.resume
+    # You can set the appropriate filename for the downloaded resume
+    resume_filename = student.username + "_resume.pdf"
+
+    response = Response(resume_data, content_type='application/pdf')
+    response.headers['Content-Disposition'] = f'attachment; filename={resume_filename}'
+
+    return response
+
 def student_dashboard():
     username = request.args.get()
 
