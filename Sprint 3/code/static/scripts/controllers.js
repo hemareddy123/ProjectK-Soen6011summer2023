@@ -143,42 +143,6 @@ $('.selectCandidate').click(function(event) {
     
 })
 
-// $('#createProfile').click(function(event) {
-//     event.preventDefault();
-
-//     const formData = new FormData();
-//     formData.append('username', $('#user').val());
-//     formData.append('highestQualification', $('#education').val());
-//     formData.append('work_experience', $('#experience').val());
-//     formData.append('achivements', $('#achievments').val());
-//     formData.append('email', $('#mail').val());
-//     formData.append('gender', $('input[name="gender"]:checked').val());
-//     formData.append('age', $('#age').val());
-//     formData.append('address', $('#address').val());
-//     formData.append('phone', $('#phone').val());
-//     const resumeFileInput = document.getElementById('resume');
-//     formData.append('resume', resumeFileInput.files[0]);
-//     var userId = $('#mylink').data('user-id');
-
-//     for (const entry of formData.entries()) {
-//         console.log(`${entry[0]}: ${entry[1]}`);
-//       }
-
-//     $.ajax({
-//         url: 'http://127.0.0.1:5000/studentProfilePostReq',
-//         type: 'POST',
-//         data: formData,
-//         success: function (response) {
-//             // Handle the response from the server
-//             window.location.href = 'http://127.0.0.1:5000/studentDashBoard' + "?id="+response.studentId + "&userId="+userId;
-//         },
-//         error: function (error) {
-//             // Handle any errors that occur during the request
-//             console.error(error);
-//         }
-//     });
-    
-// })
 
 $('#createProfile').click(function(event) {
     event.preventDefault();
@@ -218,4 +182,32 @@ $('#createProfile').click(function(event) {
     }); 
 });
 
+$('.apply-job-link').click(function(event) {
+    
+    event.preventDefault();
+    var jobId = $(this).data('job-id');
+    var studId = $(this).data('student-id');
+
+    console.log(`student is ${studId}`);
+    
+    var formData = {
+        'jobposting_id' : jobId,
+        'stud_id' : studId
+    }
+    
+    $.ajax({
+        url: 'http://127.0.0.1:5000/applyJob',
+        type: 'POST',
+        data: JSON.stringify(formData),
+        contentType: 'application/json',
+        success: function (response) {
+            // Handle the response from the server
+            window.alert('successully applied');
+        },
+        error: function (error) {
+            // Handle any errors that occur during the request
+            console.error(error);
+        }
+    });
+})
 
