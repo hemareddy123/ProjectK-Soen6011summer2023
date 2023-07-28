@@ -1,7 +1,8 @@
 from Models.Student import Student
+from Models.JobPosting import JobPosting
 from flask_restful import reqparse, Resource
-from flask import url_for
 from werkzeug.datastructures import FileStorage
+from db import db
 
 _user_parser = reqparse.RequestParser()
 
@@ -33,6 +34,33 @@ class CrStudent(Resource):
         student = Student(resume=resume_data, **data)
         student.save_to_db()
         return {'studentId': student.id, 'msg': 'student created success'}
+    
+
+_user_parser.add_argument('stud_id', type=int, required=False, help='Add the student-id into the system')
+_user_parser.add_argument('jobposting_id', type=int, required=False, help='Add the jobposting-id into the system')
+
+class CrStudJob(Resource):
+    def post(self):
+        data = _user_parser.parse_args()
+        stu_id = data['stud_id']
+        job_id = data['jobposting_id']
+
+        student = Student.get_user_by_id(stu_id)
+        job = JobPosting.get_job_by_id(job_id)
+
+        student.selectedJobs.append(job)
+        db.session.commit()
+
+        return "Job linked to student success"
+
+
+
+
+
+
+
+
+
 
 
 

@@ -2,6 +2,10 @@ from db import db
 
 from datetime import datetime
 
+user_stu = db.Table('stu_jobs',
+    db.Column('stud_id', db.Integer, db.ForeignKey('student.id'), primary_key=True),
+    db.Column('job_id', db.Integer, db.ForeignKey('jobposting.id'), primary_key=True)
+)
 
 class Student(db.Model):
     __tablename__ = 'student'
@@ -17,6 +21,8 @@ class Student(db.Model):
     address = db.Column(db.String(50), nullable=True)
     phone = db.Column(db.String(15), nullable=True)
     resume = db.Column(db.LargeBinary)
+
+    selectedJobs = db.relationship('JobPosting',secondary = 'stu_jobs')
     
     def __init__(self,username,highestQualification,work_experience,achivements,email,gender,age,address,phone,resume):
         self.username = username

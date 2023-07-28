@@ -9,7 +9,7 @@ from Models.Student import Student
 
 from Resource.UserController import CrUser,UserLogin
 from Resource.JobPostController import CrJobPosting
-from Resource.StudentController import CrStudent
+from Resource.StudentController import CrStudent , CrStudJob
 from Resource.AdminController import ShowAllUsers
 
 
@@ -21,7 +21,7 @@ db.init_app(app)
 
 @app.before_first_request
 def create_tables():
-    db.drop_all()
+    #db.drop_all()
     db.create_all()
 
 api = Api(app)
@@ -35,15 +35,15 @@ def emp_dashboard():
     username = request.args.get('username')
     emp = User.get_user_by_username(username)
     jobs = JobPosting.get_all_jobs()
-    students = Student.get_all_students()
-    selectedStudents = emp.selected_students
+    #students = Student.get_all_students()
+    #selectedStudents = emp.selected_students
     return render_template('empDashboard.html',
                             empId=emp.id,
                             username=emp.username,
                             email=emp.useremail,
-                            jobs=jobs,
-                            students=students,
-                            selectedStudents=selectedStudents)
+                            jobs=jobs)
+                            #students=students,
+                            #selectedStudents=selectedStudents)
 
 @app.route('/admin_dashboard')
 def admin_dashboard():
@@ -75,13 +75,13 @@ def student_dashboard():
 
     # Hack not to be used for proper architecture
     user_student = user.user_students
-    print(len)
     if len(user_student) == 0:
         user.user_students.append(student)
         db.session.commit()
 
     jobs = JobPosting.get_all_jobs()
-    return render_template('studentDashboard.html',student=student,jobs=jobs,user=user)
+    selectedJobs = student.selectedJobs
+    return render_template('studentDashboard.html',student=student,jobs=jobs,user=user,selectedJobs=selectedJobs)
 
 @app.route('/studentProfile')
 def student_profile():
@@ -115,6 +115,7 @@ api.add_resource(CrJobPosting,"/postJob")
 api.add_resource(CrStudent,"/studentProfilePostReq")
 api.add_resource(CrEmpStud,"/selectStudent")
 api.add_resource(ShowAllUsers,"/showAllUsers")
+api.add_resource(CrStudJob,"/applyJob")
 
 if __name__ == '__main__':
     app.run(debug=True)
