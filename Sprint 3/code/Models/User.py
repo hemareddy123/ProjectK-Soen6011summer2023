@@ -5,10 +5,20 @@ from sqlalchemy import or_
 
 bcrypt = Bcrypt()
 
-# emp_stu = db.Table('emp_stu',
-#     db.Column('emp_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
-#     db.Column('stud_id', db.Integer, db.ForeignKey('student.id'), primary_key=True)
-# )
+#students that been applied to job posted by the employer
+emp_appstu = db.Table('emp_appstu',
+    db.Column('emp_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
+    db.Column('stud_id', db.Integer, db.ForeignKey('student.id'), primary_key=True)
+)
+
+#students that been selected by the employer for an interview
+emp_selecstu = db.Table('emp_selecstu',
+    db.Column('emp_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
+    db.Column('stud_id', db.Integer, db.ForeignKey('student.id'), primary_key=True)
+)
+
+# Users that are student and have their student id linked with user id create
+# on main page
 user_stu = db.Table('user_stu',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
     db.Column('stud_id', db.Integer, db.ForeignKey('student.id'), primary_key=True)
@@ -23,7 +33,8 @@ class User(db.Model):
     useremail = db.Column(db.String(20), nullable=False)
 
 
-    #selected_students = db.relationship('Student',secondary='emp_stu')
+    selected_students = db.relationship('Student',secondary='emp_selecstu')
+    applied_students = db.relationship('Student',secondary='emp_appstu')
     user_students = db.relationship('Student',secondary = 'user_stu')
 
     def __init__(self, username, password,usertype,useremail):

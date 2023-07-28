@@ -2,7 +2,7 @@ from db import db
 
 from datetime import datetime
 
-user_stu = db.Table('stu_jobs',
+stu_jobs = db.Table('stu_jobs',
     db.Column('stud_id', db.Integer, db.ForeignKey('student.id'), primary_key=True),
     db.Column('job_id', db.Integer, db.ForeignKey('jobposting.id'), primary_key=True)
 )

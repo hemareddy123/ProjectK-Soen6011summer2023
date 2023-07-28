@@ -1,4 +1,3 @@
-from io import BytesIO
 from flask import Flask, render_template, request, Response, redirect, url_for
 from flask_restful import Api, Resource
 from db import db
@@ -32,17 +31,19 @@ def hello_world():  # put application's code here
 
 @app.route('/emp_dashboard')
 def emp_dashboard():
-    username = request.args.get('username')
-    emp = User.get_user_by_username(username)
+    id = request.args.get('id')
+    emp = User.get_user_by_id(id)
     jobs = JobPosting.get_all_jobs()
-    #students = Student.get_all_students()
+    students = emp.applied_students
+    # print('below is the type')
+    # print(type(students))
     #selectedStudents = emp.selected_students
     return render_template('empDashboard.html',
                             empId=emp.id,
                             username=emp.username,
                             email=emp.useremail,
-                            jobs=jobs)
-                            #students=students,
+                            jobs=jobs,
+                            students=students)
                             #selectedStudents=selectedStudents)
 
 @app.route('/admin_dashboard')
