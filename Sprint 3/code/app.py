@@ -1,5 +1,5 @@
 from io import BytesIO
-from flask import Flask, render_template, request, send_file, Response
+from flask import Flask, render_template, request, Response, redirect, url_for
 from flask_restful import Api, Resource
 from db import db
 from Resource.EmpStudentController import CrEmpStud
@@ -21,7 +21,7 @@ db.init_app(app)
 
 @app.before_first_request
 def create_tables():
-    #db.drop_all()
+    db.drop_all()
     db.create_all()
 
 api = Api(app)
@@ -59,7 +59,12 @@ def admin_dashboard():
 def studentProfileForm():
     userId = request.args.get('id')
     user = User.get_user_by_id(userId)
-    return render_template('studentProfileForm.html',user=user)
+
+    student = user.user_students
+    if len(student) == 1:
+        return redirect(url_for('student_dashboard', userId=userId, id=student[0].id))
+    else:
+        return render_template('studentProfileForm.html',user=user)
 
 @app.route('/studentDashBoard')
 def student_dashboard():
@@ -67,6 +72,14 @@ def student_dashboard():
     user = request.args.get('userId')
     student = Student.get_user_by_id(studentId)
     user = User.get_user_by_id(user)
+
+    # Hack not to be used for proper architecture
+    user_student = user.user_students
+    print(len)
+    if len(user_student) == 0:
+        user.user_students.append(student)
+        db.session.commit()
+
     jobs = JobPosting.get_all_jobs()
     return render_template('studentDashboard.html',student=student,jobs=jobs,user=user)
 

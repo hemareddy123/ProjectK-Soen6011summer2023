@@ -5,8 +5,12 @@ from sqlalchemy import or_
 
 bcrypt = Bcrypt()
 
-emp_stu = db.Table('emp_stu',
-    db.Column('emp_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
+# emp_stu = db.Table('emp_stu',
+#     db.Column('emp_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
+#     db.Column('stud_id', db.Integer, db.ForeignKey('student.id'), primary_key=True)
+# )
+user_stu = db.Table('user_stu',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
     db.Column('stud_id', db.Integer, db.ForeignKey('student.id'), primary_key=True)
 )
 class User(db.Model):
@@ -19,7 +23,8 @@ class User(db.Model):
     useremail = db.Column(db.String(20), nullable=False)
 
 
-    selected_students = db.relationship('Student',secondary='emp_stu')
+    #selected_students = db.relationship('Student',secondary='emp_stu')
+    user_students = db.relationship('Student',secondary = 'user_stu')
 
     def __init__(self, username, password,usertype,useremail):
     
