@@ -48,11 +48,11 @@ def emp_dashboard():
 @app.route('/admin_dashboard')
 def admin_dashboard():
     username = request.args.get('username')
-    user=User.get_user_by_username(username)
+    admin=User.get_user_by_username(username)
     users = User.get_all_users()
     return render_template('adminDashboard.html',
                             username=username,
-                            email=user.useremail,
+                            email=admin.useremail,
                             users=users)
  
 @app.route('/studentProfileForm')

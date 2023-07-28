@@ -53,10 +53,13 @@ $('#loginForm').submit(function(event) {
             message = response.message;
             userType = response.type;
             console.log(response);
-            if(message === 'success' && userType === 'employer'){
+            if(message === 'success' && userType === 'student'){
                window.location.href = response.redirect_url + "?username="+response.name;
-            }else if(message === 'success' && userType === 'student'){
+            }else if(message === 'success' && userType === 'employer'){
                 window.location.href = response.redirect_url + "?id="+response.userId;
+            }else if(message === 'success' && userType === 'admin'){
+                window.location.href = response.redirect_url + "?username="+response.name;
+                $('#allUsersTable').addClass("hidden");
             }
         },
         error: function (error) {
