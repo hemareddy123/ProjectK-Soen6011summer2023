@@ -54,7 +54,7 @@ $('#loginForm').submit(function(event) {
             userType = response.type;
             console.log(response);
             if(message === 'success' && userType === 'student'){
-               window.location.href = response.redirect_url + "?username="+response.name;
+               window.location.href = response.redirect_url + "?id="+response.userId;
             }else if(message === 'success' && userType === 'employer'){
                 window.location.href = response.redirect_url + "?id="+response.userId;
             }else if(message === 'success' && userType === 'admin'){
@@ -71,13 +71,17 @@ $('#loginForm').submit(function(event) {
 
 $('#jobPosting').submit(function(event) {
     event.preventDefault();
+    
+    //var empId = $('#createJobBtn').data('emp-id');
+
     var formData = {
         title: $('input[name="jobTitle"]').val(),
         description: $('textArea[name="description"]').val(),
         startDate: $('input[name="endDate"]').val(),
         endDate: $('input[name="startDate"]').val(),
         location: $('input[name="location"]').val(),
-        jobType: $('select[name="jobType"').val()
+        jobType: $('select[name="jobType"').val(),
+        employer_id : $('#createJobBtn').data('emp-id')
     };
     function showSuccessDiv() {
         $("#successDiv").fadeIn(500, function() {
@@ -86,6 +90,8 @@ $('#jobPosting').submit(function(event) {
           }, 2000); // 2000 milliseconds (2 seconds)
         });
       }
+
+      console.log(formData);
 
     $.ajax({
         url: 'http://127.0.0.1:5000/postJob',

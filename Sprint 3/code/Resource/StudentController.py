@@ -28,25 +28,32 @@ class CrStudent(Resource):
         
         data.pop('resume',None)
 
-        #print(resume_data)
-        #return {'success': 'student generated'}
+        # print(resume_data)
+        # return {'success': 'student generated'}
 
         student = Student(resume=resume_data, **data)
         student.save_to_db()
         return {'studentId': student.id, 'msg': 'student created success'}
     
 
-_user_parser.add_argument('stud_id', type=int, required=False, help='Add the student-id into the system')
-_user_parser.add_argument('jobposting_id', type=int, required=False, help='Add the jobposting-id into the system')
+# created relationship b/w student and a job
+
+_user_parser1 = reqparse.RequestParser()
+_user_parser1.add_argument('stud_id', type=int, required=False, help='Add the student-id into the system')
+_user_parser1.add_argument('jobposting_id', type=int, required=False, help='Add the jobposting-id into the system')
 
 class CrStudJob(Resource):
     def post(self):
-        data = _user_parser.parse_args()
+        data = _user_parser1.parse_args()
         stu_id = data['stud_id']
         job_id = data['jobposting_id']
 
         student = Student.get_user_by_id(stu_id)
         job = JobPosting.get_job_by_id(job_id)
+        
+        #hoping to create a relationship b/w applied students and posted employer
+        employer = job.createdByEmployer[0]
+        employer.applied_students.append(student)
 
         student.selectedJobs.append(job)
         db.session.commit()
