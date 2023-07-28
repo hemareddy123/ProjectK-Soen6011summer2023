@@ -1,0 +1,58 @@
+a) Test Case: Verify Home Page Loading
+
+Test Scenario: Check if the home page is accessible and returns a valid HTTP response.
+Test Steps:
+Send a GET request to the '/' endpoint.
+Expected Outcome: The response status code should indicate a successful request.
+
+b)Test Case: Verify Employee Dashboard Loading
+
+Test Scenario: Check if the employee dashboard page loads correctly with all required data.
+Test Steps:
+Send a GET request to the '/emp_dashboard' endpoint with a valid 'username' parameter.
+Expected Outcome: The response status code should indicate a successful request, and the employee dashboard should display information about the employee, available jobs, students, and selected students.
+
+c) Test Case: Verify Student Dashboard Loading
+
+Test Scenario: Check if the student dashboard page loads correctly.
+Test Steps:
+Send a GET request to the '/student_dashboard' endpoint.
+Expected Outcome: The response status code should indicate a successful request.
+
+d) Test Case: Verify User Login Endpoint
+
+Test Scenario: Check if the user login endpoint works as expected for valid and invalid login credentials.
+Test Steps:
+Send a POST request to the '/login' endpoint with valid login credentials (username and password).
+Send a POST request to the '/login' endpoint with invalid login credentials.
+Expected Outcome:
+For valid credentials, the response status code should indicate a successful login.
+For invalid credentials, the response status code should indicate a failed login.
+
+e)Test Case: Verify User Sign Up Endpoint
+
+Test Scenario: Check if the user sign-up endpoint works as expected for new user registration.
+Test Steps:
+Send a POST request to the '/signUp' endpoint with valid user registration data (e.g., username, password, email).
+Expected Outcome: The response status code should indicate a successful user registration.
+
+f)Test Case: Verify Job Posting Endpoint
+
+Test Scenario: Check if the job posting endpoint works as expected for posting new job opportunities.
+Test Steps:
+Send a POST request to the '/postJob' endpoint with valid job posting data (e.g., job title, description, requirements).
+Expected Outcome: The response status code should indicate successful job posting.
+
+g) Test Case: Verify Student Profile Endpoint
+
+Test Scenario: Check if the student profile endpoint works as expected for updating student information.
+Test Steps:
+Send a PUT request to the '/studentProfile' endpoint with valid student profile data (e.g., name, age, skills).
+Expected Outcome: The response status code should indicate successful student profile update.
+
+h) Test Case: Verify Student Selection by Employee Endpoint
+
+Test Scenario: Check if the employee can select a student for a job.
+Test Steps:
+Send a POST request to the '/selectStudent' endpoint with valid student selection data (e.g., student ID, job ID).
+Expected Outcome: The response status code should indicate successful student selection.
