@@ -1,6 +1,11 @@
 from db import db
 from datetime import datetime
 
+job_emp = db.Table('job_emp',
+    db.Column('job_id', db.Integer, db.ForeignKey('jobposting.id'), primary_key=True),
+    db.Column('emp_id', db.Integer, db.ForeignKey('user.id'), primary_key=True)
+)
+
 class JobPosting(db.Model):
     __tablename__ = 'jobposting'
 
@@ -12,8 +17,10 @@ class JobPosting(db.Model):
     location = db.Column(db.String(50), nullable=False)
     jobType = db.Column(db.String(10), nullable=False)
 
-    def __init__(self, title, description,startDate,endDate,location,jobType):
+    createdByEmployer = db.relationship('User',secondary='job_emp')
 
+    def __init__(self, title, description,startDate,endDate,location,jobType):
+      
         self.title = title.lower()
         self.description = description.lower()
         self.location = location.lower()
@@ -28,3 +35,8 @@ class JobPosting(db.Model):
     @classmethod
     def get_all_jobs(cls):
         return cls.query.all()
+    
+    
+    @classmethod
+    def get_job_by_id(cls, id_):
+        return cls.query.filter_by(id=id_).first()

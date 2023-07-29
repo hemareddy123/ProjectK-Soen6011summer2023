@@ -186,7 +186,7 @@
         </div> <!-- end job-info -->
         <!--     Submit     -->
         <div>
-          <button class="bg-teal-500 hover:bg-teal-600 text-white py-2 px-3 rounded" type="submit">Create job</button>
+          <button id="createJobBtn" class="bg-teal-500 hover:bg-teal-600 text-white py-2 px-3 rounded" type="submit" data-emp-id={{ empId }}>Create job</button>
         </div>
       </form>
 
@@ -197,50 +197,79 @@
     <!-- Employee All Candidates Table -->
 
     <div id="studentTable" class="hidden relative overflow-x-auto shadow-md sm:rounded-lg">
-      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 table-auto">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-              <th scope="col" class="px-6 py-3">
-                  Name
+              <th scope="col" class="px-6 py-3 w-1/8">
+                Name
               </th>
-              <th scope="col" class="px-6 py-3">
-                Work-Experience
+              <th scope="col" class="px-6 py-3 w-1/8">
+                Qualification
               </th>
-              <th scope="col" class="px-6 py-3">
-                Skills
+              <th scope="col" class="px-6 py-3 w-1/8">
+                Experience
               </th>
-              <th scope="col" class="px-6 py-3">
-                  Salary
+              <th scope="col" class="px-6 py-3 w-1/8">
+                Achivements
               </th>
-              <th scope="col" class="px-6 py-3">
-                  Phone
+              <th scope="col" class="px-6 py-3 w-1/8">
+                Email
               </th>
-              <th scope="Col" class="px-6 py-3">
+              <th scope="col" class="px-6 py-3 w-1/8">
+                Gender
+              </th>
+              <th scope="col" class="px-6 py-3 w-1/8">
+                Age
+              </th>
+              <th scope="col" class="px-6 py-3 w-1/8">
+                Address
+              </th>
+              <th scope="col" class="px-6 py-3 w-1/8">
+                Phone
+              </th>
+              <th scope="col" class="px-6 py-3 w-1/8">
+                Profile
+              </th>
+              <th scope="Col" class="px-6 py-3 w-1/8">
                 Action
             </th>
             </tr>
         </thead>
         <tbody>
           {% for student in students %}
-
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 
-              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                {{ student.first_name + " " +student.last_name }}                                     
+              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-1/8">
+                {{ student.username }}                                     
               </th>
-              <td class="px-6 py-4">
+              <td class="px-6 py-4 w-1/8">
+                {{ student.highestQualification }}
+              </td>
+              <td class="px-6 py-4 w-1/8">
                 {{ student.work_experience }}
               </td>
-              <td class="px-6 py-4">
-                {{ student.skills }}
+              <td class="px-6 py-4 w-1/8">
+                {{ student.achivements }}
               </td>
-              <td class="px-6 py-4">
-                {{ student.salary }}
+              <td class="px-6 py-4 w-1/8">
+                {{ student.email }}
               </td>
-              <td class="px-6 py-4">
+              <td class="px-6 py-4 w-1/8">
+                {{ student.gender }}
+              </td>
+              <td class="px-6 py-4 w-1/8">
+                {{ student.age }}
+              </td>
+              <td class="px-6 py-4 w-1/8">
+                {{ student.address }}
+              </td>
+              <td class="px-6 py-4 w-1/8">
                 {{ student.phone }}
               </td>
-              <td class="px-6 py-4">
+              <td class="px-6 py-4 w-1/8">
+                <a href="{{ url_for('student_profile', id=student.id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"> Click to profile </a>
+              </td>
+              <td class="px-6 py-4 w-1/8">
                   <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline selectCandidate" data-emp-id={{ empId }} data-student-id={{ student.id }}>Select</a>
               </td>
             </tr>
@@ -251,7 +280,7 @@
 
     <!-- Employee Selected Candidates Table -->
     <div id="selectedStudentTable" class="hidden relative overflow-x-auto shadow-md sm:rounded-lg">
-      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 table-auto">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" class="px-6 py-3">

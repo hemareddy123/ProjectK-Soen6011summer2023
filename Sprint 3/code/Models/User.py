@@ -1,9 +1,26 @@
 from db import db
 from flask_bcrypt import Bcrypt
+import json
+from sqlalchemy import or_
+
 bcrypt = Bcrypt()
 
-emp_stu = db.Table('emp_stu',
+#students that been applied to job posted by the employer
+emp_appstu = db.Table('emp_appstu',
     db.Column('emp_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
+    db.Column('stud_id', db.Integer, db.ForeignKey('student.id'), primary_key=True)
+)
+
+#students that been selected by the employer for an interview
+emp_selecstu = db.Table('emp_selecstu',
+    db.Column('emp_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
+    db.Column('stud_id', db.Integer, db.ForeignKey('student.id'), primary_key=True)
+)
+
+# Users that are student and have their student id linked with user id create
+# on main page
+user_stu = db.Table('user_stu',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
     db.Column('stud_id', db.Integer, db.ForeignKey('student.id'), primary_key=True)
 )
 class User(db.Model):
@@ -16,7 +33,9 @@ class User(db.Model):
     useremail = db.Column(db.String(20), nullable=False)
 
 
-    selected_students = db.relationship('Student',secondary='emp_stu')
+    selected_students = db.relationship('Student',secondary='emp_selecstu')
+    applied_students = db.relationship('Student',secondary='emp_appstu')
+    user_students = db.relationship('Student',secondary = 'user_stu')
 
     def __init__(self, username, password,usertype,useremail):
     
@@ -29,6 +48,9 @@ class User(db.Model):
         db.session.add(self)
         db.session.commit()
 
+    def toJson(self):
+        return json.dumps(self, default=lambda o: o.__dict__)
+
     @classmethod
     def get_user_by_username(cls, username_):
         return cls.query.filter_by(username=username_).first()
@@ -36,5 +58,8 @@ class User(db.Model):
     @classmethod
     def get_user_by_id(cls, id_):
         return cls.query.filter_by(id=id_).first()
-
-
+    
+    @classmethod
+    def get_all_users(cls):
+        users=cls.query.filter(or_(cls.usertype=="employer", cls.usertype=="student")).all()
+        return users

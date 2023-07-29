@@ -1,5 +1,11 @@
 from db import db
+
 from datetime import datetime
+
+stu_jobs = db.Table('stu_jobs',
+    db.Column('stud_id', db.Integer, db.ForeignKey('student.id'), primary_key=True),
+    db.Column('job_id', db.Integer, db.ForeignKey('jobposting.id'), primary_key=True)
+)
 
 class Student(db.Model):
     __tablename__ = 'student'
@@ -14,9 +20,11 @@ class Student(db.Model):
     age = db.Column(db.DateTime,nullable=True)
     address = db.Column(db.String(50), nullable=True)
     phone = db.Column(db.String(15), nullable=True)
-    
+    resume = db.Column(db.LargeBinary)
 
-    def __init__(self,username,highestQualification,work_experience,achivements,email,gender,age,address,phone):
+    selectedJobs = db.relationship('JobPosting',secondary = 'stu_jobs')
+    
+    def __init__(self,username,highestQualification,work_experience,achivements,email,gender,age,address,phone,resume):
         self.username = username
         self.highestQualification = highestQualification
         self.work_experience = work_experience
@@ -26,6 +34,7 @@ class Student(db.Model):
         self.age = datetime.strptime(age, "%Y-%m-%d")
         self.address = address
         self.phone = phone
+        self.resume = resume
 
     def save_to_db(self):
         db.session.add(self)

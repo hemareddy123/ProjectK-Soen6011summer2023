@@ -53,10 +53,13 @@ $('#loginForm').submit(function(event) {
             message = response.message;
             userType = response.type;
             console.log(response);
-            if(message === 'success' && userType === 'employer'){
-               window.location.href = response.redirect_url + "?username="+response.name;
-            }else if(message === 'success' && userType === 'student'){
+            if(message === 'success' && userType === 'student'){
+               window.location.href = response.redirect_url + "?id="+response.userId;
+            }else if(message === 'success' && userType === 'employer'){
                 window.location.href = response.redirect_url + "?id="+response.userId;
+            }else if(message === 'success' && userType === 'admin'){
+                window.location.href = response.redirect_url + "?username="+response.name;
+                $('#allUsersTable').addClass("hidden");
             }
         },
         error: function (error) {
@@ -68,13 +71,17 @@ $('#loginForm').submit(function(event) {
 
 $('#jobPosting').submit(function(event) {
     event.preventDefault();
+    
+    //var empId = $('#createJobBtn').data('emp-id');
+
     var formData = {
         title: $('input[name="jobTitle"]').val(),
         description: $('textArea[name="description"]').val(),
         startDate: $('input[name="endDate"]').val(),
         endDate: $('input[name="startDate"]').val(),
         location: $('input[name="location"]').val(),
-        jobType: $('select[name="jobType"').val()
+        jobType: $('select[name="jobType"').val(),
+        employer_id : $('#createJobBtn').data('emp-id')
     };
     function showSuccessDiv() {
         $("#successDiv").fadeIn(500, function() {
@@ -83,6 +90,8 @@ $('#jobPosting').submit(function(event) {
           }, 2000); // 2000 milliseconds (2 seconds)
         });
       }
+
+      console.log(formData);
 
     $.ajax({
         url: 'http://127.0.0.1:5000/postJob',
@@ -140,27 +149,34 @@ $('.selectCandidate').click(function(event) {
     
 })
 
+
 $('#createProfile').click(function(event) {
     event.preventDefault();
 
-    const formData = {
-        username: $('#user').val(),
-        highestQualification: $('#education').val(),
-        work_experience: $('#experience').val(),
-        achivements: $('#achievments').val(),
-        email: $('#mail').val(),
-        gender: $('input[name="gender"]:checked').val(),
-        age: $('#age').val(),
-        address: $('#address').val(),
-        phone: $('#phone').val()     
-    }
+    const formData = new FormData();
+    formData.append('username', $('#user').val());
+    formData.append('highestQualification', $('#education').val());
+    formData.append('work_experience', $('#experience').val());
+    formData.append('achivements', $('#achievments').val());
+    formData.append('email', $('#mail').val());
+    formData.append('gender', $('input[name="gender"]:checked').val());
+    formData.append('age', $('#age').val());
+    formData.append('address', $('#address').val());
+    formData.append('phone', $('#phone').val());
+    const resumeFileInput = document.getElementById('resume');
+    formData.append('resume', resumeFileInput.files[0]);
     var userId = $('#mylink').data('user-id');
+
+    for (const entry of formData.entries()) {
+        console.log(`${entry[0]}: ${entry[1]}`);
+    }
 
     $.ajax({
         url: 'http://127.0.0.1:5000/studentProfilePostReq',
         type: 'POST',
-        data: JSON.stringify(formData),
-        contentType: 'application/json',
+        data: formData,
+        processData: false,
+        contentType: false,
         success: function (response) {
             // Handle the response from the server
             window.location.href = 'http://127.0.0.1:5000/studentDashBoard' + "?id="+response.studentId + "&userId="+userId;
@@ -169,6 +185,35 @@ $('#createProfile').click(function(event) {
             // Handle any errors that occur during the request
             console.error(error);
         }
-    });
+    }); 
+});
+
+$('.apply-job-link').click(function(event) {
     
+    event.preventDefault();
+    var jobId = $(this).data('job-id');
+    var studId = $(this).data('student-id');
+
+    console.log(`student is ${studId}`);
+    
+    var formData = {
+        'jobposting_id' : jobId,
+        'stud_id' : studId
+    }
+    
+    $.ajax({
+        url: 'http://127.0.0.1:5000/applyJob',
+        type: 'POST',
+        data: JSON.stringify(formData),
+        contentType: 'application/json',
+        success: function (response) {
+            // Handle the response from the server
+            window.alert('successully applied');
+        },
+        error: function (error) {
+            // Handle any errors that occur during the request
+            console.error(error);
+        }
+    });
 })
+
