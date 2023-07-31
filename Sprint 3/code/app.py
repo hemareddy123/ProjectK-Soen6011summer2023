@@ -6,7 +6,7 @@ from Models.User import User
 from Models.JobPosting import JobPosting
 from Models.Student import Student
 
-from Resource.UserController import CrUser,UserLogin
+from Resource.UserController import CrUser,UserLogin, DlUser
 from Resource.JobPostController import CrJobPosting , DlJobPosting
 from Resource.StudentController import CrStudent , CrStudJob
 from Resource.AdminController import ShowAllUsers
@@ -52,11 +52,16 @@ def emp_dashboard():
 def admin_dashboard():
     username = request.args.get('username')
     admin=User.get_user_by_username(username)
+    
     users = User.get_all_users()
+    students = Student.get_all_students()
+    
+    jobs = JobPosting.get_all_jobs()
     return render_template('adminDashboard.html',
                             username=username,
                             email=admin.useremail,
-                            users=users)
+                            users=users,
+                            jobs=jobs)
  
 @app.route('/studentProfileForm')
 def studentProfileForm():
@@ -130,6 +135,7 @@ api.add_resource(CrEmpStud,"/selectStudent")
 api.add_resource(ShowAllUsers,"/showAllUsers")
 api.add_resource(CrStudJob,"/applyJob")
 api.add_resource(DlJobPosting,"/deleteJob")
+api.add_resource(DlUser,"/deleteUser")
 
 if __name__ == '__main__':
     app.run(debug=True)

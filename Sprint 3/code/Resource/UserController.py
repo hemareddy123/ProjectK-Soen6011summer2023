@@ -1,6 +1,7 @@
 from flask_restful import reqparse, Resource
 from Models.User import User,bcrypt
 from flask import url_for
+from db import db
 
 _user_parser = reqparse.RequestParser()
 _user_parser.add_argument('username', type=str, required=True, help='Add the username into the system')
@@ -29,4 +30,14 @@ class UserLogin(Resource):
             return "user logged in successfully"
         else:
             return "login failed"
+
+_user_parser1 = reqparse.RequestParser()   
+_user_parser1.add_argument('user_id', type=int, required=True, help='Delete user id ')   
+class DlUser(Resource):
+    def post(self):
+        data = _user_parser1.parse_args()
+        user = User.get_user_by_id(data['user_id'])
+        db.session.delete(user)
+        db.session.commit()
+        return "user deleted successfully"
 
