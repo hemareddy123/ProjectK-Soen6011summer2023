@@ -60,6 +60,8 @@ $('#loginForm').submit(function(event) {
             }else if(message === 'success' && userType === 'admin'){
                 window.location.href = response.redirect_url + "?username="+response.name;
                 $('#allUsersTable').addClass("hidden");
+            }else{
+                incorrectPass.style.display = 'block'
             }
         },
         error: function (error) {
