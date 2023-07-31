@@ -44,8 +44,9 @@ class DlJobPosting(Resource):
         
         # Remove the student from the employer applied student table
         employer = jobToBeDeleted.createdByEmployer
-        appliedStudents = employer[0].applied_students
-        appliedStudents.clear()
+        if len(employer) > 0:
+            appliedStudents = employer[0].applied_students
+            appliedStudents.clear()
 
         db.session.delete(jobToBeDeleted)
         db.session.commit()
