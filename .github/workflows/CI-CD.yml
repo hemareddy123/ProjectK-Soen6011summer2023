@@ -20,10 +20,10 @@ jobs:
           node-version: '14'
 
       - name: Install frontend dependencies
-        run: npm install
+        run: npm install --prefix frontend
 
       - name: Run frontend tests
-        run: npm test
+        run: npm test --prefix sprint 3/frontend
 
       # Backend build and test
       - name: Set up Python
@@ -32,10 +32,10 @@ jobs:
           python-version: '3.x'
 
       - name: Install backend dependencies
-        run: pip install -r requirements.txt
+        run: pip install -r sprint 3/requirements.txt
 
       - name: Install Flask
         run: pip install Flask
 
       - name: Run backend tests
-        run: pytest
+        run: pytest sprint 3/backend
