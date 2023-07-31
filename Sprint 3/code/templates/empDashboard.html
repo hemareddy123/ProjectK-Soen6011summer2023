@@ -71,7 +71,7 @@
   
   <div class="bg-white p-4">   
       <h2 class="text-3xl font-bold text-slate-800">Welcome to your Career Service Dashboard</h2>
-      <p style="margin-top: 10px;" class="font-medium text-slate-500">Track, manage and view jobs postings and Candidates</p>
+      <p style="margin-top: 10px;" class="font-medium text-slate-500">Track, manage and view jobs postings and Candidates</p> <br>
 
       <div id="listings" class="grid grid-cols-4 gap-4">
         {% for job in jobs %}
@@ -83,8 +83,10 @@
               Description: {{ job.description }}
             </p>
             
-            <p class="text-gray-400">start date: {{ job.startDate.strftime('%d %b %Y') }}</p>
-            <p class="text-gray-400">end date: {{ job.endDate.strftime('%d %b %Y') }}</p>
+            <p class="text-gray-500">Start date: {{ job.startDate.strftime('%d %b %Y') }}</p>
+            <p class="text-gray-500">End date: {{ job.endDate.strftime('%d %b %Y') }}</p><br>
+
+            <a target="_blank" style="cursor: pointer;" class="deleteJobPosting text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" data-job-id={{ job.id }}>Delete Job</a>
           </div>
         {% endfor %}
       </div>
@@ -258,7 +260,7 @@
                 {{ student.gender }}
               </td>
               <td class="px-6 py-4 w-1/8">
-                {{ student.age }}
+                {{ student.age|age_format }}
               </td>
               <td class="px-6 py-4 w-1/8">
                 {{ student.address }}
@@ -282,44 +284,73 @@
     <div id="selectedStudentTable" class="hidden relative overflow-x-auto shadow-md sm:rounded-lg">
       <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 table-auto">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-              <th scope="col" class="px-6 py-3">
-                  Name
-              </th>
-              <th scope="col" class="px-6 py-3">
-                Work-Experience
-              </th>
-              <th scope="col" class="px-6 py-3">
-                Skills
-              </th>
-              <th scope="col" class="px-6 py-3">
-                  Salary
-              </th>
-              <th scope="col" class="px-6 py-3">
-                  Phone
-              </th>
-              
-            </tr>
+          <tr>
+            <th scope="col" class="px-6 py-3 w-1/8">
+              Name
+            </th>
+            <th scope="col" class="px-6 py-3 w-1/8">
+              Qualification
+            </th>
+            <th scope="col" class="px-6 py-3 w-1/8">
+              Experience
+            </th>
+            <th scope="col" class="px-6 py-3 w-1/8">
+              Achivements
+            </th>
+            <th scope="col" class="px-6 py-3 w-1/8">
+              Email
+            </th>
+            <th scope="col" class="px-6 py-3 w-1/8">
+              Gender
+            </th>
+            <th scope="col" class="px-6 py-3 w-1/8">
+              Age
+            </th>
+            <th scope="col" class="px-6 py-3 w-1/8">
+              Address
+            </th>
+            <th scope="col" class="px-6 py-3 w-1/8">
+              Phone
+            </th>
+            <th scope="col" class="px-6 py-3 w-1/8">
+              Profile
+            </th>
+            
+          </tr>
         </thead>
         <tbody>
           {% for student in selectedStudents %}
-
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 
-              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                {{ student.first_name + " " +student.last_name }}                                     
+              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-1/8">
+                {{ student.username }}                                     
               </th>
-              <td class="px-6 py-4">
+              <td class="px-6 py-4 w-1/8">
+                {{ student.highestQualification }}
+              </td>
+              <td class="px-6 py-4 w-1/8">
                 {{ student.work_experience }}
               </td>
-              <td class="px-6 py-4">
-                {{ student.skills }}
+              <td class="px-6 py-4 w-1/8">
+                {{ student.achivements }}
               </td>
-              <td class="px-6 py-4">
-                {{ student.salary }}
+              <td class="px-6 py-4 w-1/8">
+                {{ student.email }}
               </td>
-              <td class="px-6 py-4">
+              <td class="px-6 py-4 w-1/8">
+                {{ student.gender }}
+              </td>
+              <td class="px-6 py-4 w-1/8">
+                {{ student.age|age_format }}
+              </td>
+              <td class="px-6 py-4 w-1/8">
+                {{ student.address }}
+              </td>
+              <td class="px-6 py-4 w-1/8">
                 {{ student.phone }}
+              </td>
+              <td class="px-6 py-4 w-1/8">
+                <a href="{{ url_for('student_profile', id=student.id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"> Click to profile </a>
               </td>
             </tr>
           {% endfor %}

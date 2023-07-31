@@ -7,9 +7,10 @@ from Models.JobPosting import JobPosting
 from Models.Student import Student
 
 from Resource.UserController import CrUser,UserLogin
-from Resource.JobPostController import CrJobPosting
+from Resource.JobPostController import CrJobPosting , DlJobPosting
 from Resource.StudentController import CrStudent , CrStudJob
 from Resource.AdminController import ShowAllUsers
+from datetime import datetime
 
 
 app = Flask(__name__)
@@ -35,6 +36,7 @@ def emp_dashboard():
     emp = User.get_user_by_id(id)
     jobs = JobPosting.get_all_jobs()
     students = emp.applied_students
+    selectedStudents = emp.selected_students
     # print('below is the type')
     # print(type(students))
     #selectedStudents = emp.selected_students
@@ -43,8 +45,8 @@ def emp_dashboard():
                             username=emp.username,
                             email=emp.useremail,
                             jobs=jobs,
-                            students=students)
-                            #selectedStudents=selectedStudents)
+                            students=students,
+                            selectedStudents=selectedStudents)
 
 @app.route('/admin_dashboard')
 def admin_dashboard():
@@ -109,6 +111,16 @@ def download_resume():
 def student_dashboard():
     username = request.args.get()
 
+@app.template_filter('age_format')
+def age_format(date_of_birth):
+    age = calculate_age(date_of_birth)
+    return f"{age} years"
+
+def calculate_age(date_of_birth):
+    today = datetime.today()
+    age = today.year - date_of_birth.year - ((today.month, today.day) < (date_of_birth.month, date_of_birth.day))
+    return age
+
 
 api.add_resource(UserLogin,"/login")
 api.add_resource(CrUser,"/signUp")
@@ -117,6 +129,7 @@ api.add_resource(CrStudent,"/studentProfilePostReq")
 api.add_resource(CrEmpStud,"/selectStudent")
 api.add_resource(ShowAllUsers,"/showAllUsers")
 api.add_resource(CrStudJob,"/applyJob")
+api.add_resource(DlJobPosting,"/deleteJob")
 
 if __name__ == '__main__':
     app.run(debug=True)

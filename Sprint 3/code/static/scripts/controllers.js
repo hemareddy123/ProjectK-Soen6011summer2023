@@ -77,8 +77,8 @@ $('#jobPosting').submit(function(event) {
     var formData = {
         title: $('input[name="jobTitle"]').val(),
         description: $('textArea[name="description"]').val(),
-        startDate: $('input[name="endDate"]').val(),
-        endDate: $('input[name="startDate"]').val(),
+        startDate: $('input[name="startDate"]').val(),
+        endDate: $('input[name="endDate"]').val(),
         location: $('input[name="location"]').val(),
         jobType: $('select[name="jobType"').val(),
         employer_id : $('#createJobBtn').data('emp-id')
@@ -132,8 +132,6 @@ $('.selectCandidate').click(function(event) {
         contentType: 'application/json',
         success: function (response) {
             // Handle the response from the server
-
-            $('.selectCandidate').addClass('disabled-link');
 
             $("#toast-success").fadeIn(500,function(){
                 setTimeout(function() {
@@ -217,3 +215,32 @@ $('.apply-job-link').click(function(event) {
     });
 })
 
+$('.deleteJobPosting').click(function(event) {
+    
+    event.preventDefault();
+
+    console.log('works');
+    var jobId = $(this).data('job-id');
+
+    var formData = {
+        'job_id' : jobId,
+    }
+
+    $.ajax({
+        url: 'http://127.0.0.1:5000/deleteJob',
+        type: 'POST',
+        data: JSON.stringify(formData),
+        contentType: 'application/json',
+        success: function (response) {
+            // Handle the response from the server
+            alert(response);
+            window.reload();
+        },
+        error: function (error) {
+            // Handle any errors that occur during the request
+            console.error(error);
+        }
+    });
+    
+    
+})
