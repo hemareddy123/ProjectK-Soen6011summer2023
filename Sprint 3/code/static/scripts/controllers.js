@@ -242,7 +242,34 @@ $('.deleteJobPosting').click(function(event) {
             // Handle any errors that occur during the request
             console.error(error);
         }
-    });
+    }); 
+})
+
+$('.deleteUser').click(function(event) {
     
-    
+    event.preventDefault();
+
+    var userId = $(this).data('user-id');
+
+    var formData = {
+        'user_id' : userId,
+    }
+
+    console.log(formData);
+
+    $.ajax({
+        url: 'http://127.0.0.1:5000/deleteUser',
+        type: 'POST',
+        data: JSON.stringify(formData),
+        contentType: 'application/json',
+        success: function (response) {
+            // Handle the response from the server
+            alert(response);
+            window.reload();
+        },
+        error: function (error) {
+            // Handle any errors that occur during the request
+            console.error(error);
+        }
+    }); 
 })
