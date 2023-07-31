@@ -11,6 +11,7 @@ class CrEmpStud(Resource):
         data = _user_parser.parse_args()
         employer = User.get_user_by_id(data['emp_id'])
         student = Student.get_user_by_id(data['stud_id'])
+        student.status = 'Selected for interview'
 
         employer.selected_students.append(student)
         employer.applied_students.remove(student)

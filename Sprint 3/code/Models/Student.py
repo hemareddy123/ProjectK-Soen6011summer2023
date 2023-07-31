@@ -21,6 +21,7 @@ class Student(db.Model):
     address = db.Column(db.String(50), nullable=True)
     phone = db.Column(db.String(15), nullable=True)
     resume = db.Column(db.LargeBinary)
+    status = db.Column(db.String(15), nullable=True)
 
     selectedJobs = db.relationship('JobPosting',secondary = 'stu_jobs')
     
