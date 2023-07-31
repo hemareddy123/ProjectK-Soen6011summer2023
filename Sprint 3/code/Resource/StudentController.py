@@ -56,6 +56,7 @@ class CrStudJob(Resource):
         employer.applied_students.append(student)
 
         student.selectedJobs.append(job)
+        student.status = 'Applied'
         db.session.commit()
 
         return "Job linked to student success"
