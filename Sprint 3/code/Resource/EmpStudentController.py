@@ -13,6 +13,7 @@ class CrEmpStud(Resource):
         student = Student.get_user_by_id(data['stud_id'])
 
         employer.selected_students.append(student)
+        employer.applied_students.remove(student)
         db.session.commit()
         return "Emp Stu relationship created"
 
