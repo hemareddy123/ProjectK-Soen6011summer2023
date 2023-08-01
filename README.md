@@ -21,7 +21,16 @@ This project aims to provide a platform for career services where students and j
 3. Database: Sqlite or MySql
 
 ## Project Approach
-The Career Services App employs a well-structured Model-View-Controller (MVC) architecture with Python Flask as the backend and HTML, CSS, and JavaScript for the front end. User interactions and application logic are handled through REST APIs, ensuring scalability and maintainability. Some of the key features implemented in sprint 2 are Login, Registration, Job Posting, Candidate Management, and Skills-Based Shortlisting. The Controller seamlessly communicates with the Model layer (SQLite3 and SQLAlchemy) for efficient CRUD operations on the database. This approach fosters user-friendly interactions while effectively connecting employers with students, making the app a reliable and accessible career services platform.
+The Career Services App employs a well-structured Model-View-Controller (MVC) architecture with Python Flask as the backend and HTML, CSS, and JavaScript as the front end. User interactions and application logic are handled through REST APIs, ensuring scalability and maintainability. Some of the key features implemented in sprint 2 are Login, Registration, Job Posting, Candidate Management, and Skills-Based Shortlisting. For sprint-3 we have implemented the following features such as View all job postings on student and admin dashboards, and apply to the job posting which can be viewed on both student and employer etc. In the coming sprint-4, we are planning to build and run the integration tests using CI/CD using GitHub actions. The Controller seamlessly communicates with the Model layer (SQLite3 and SQLAlchemy) for efficient CRUD operations on the database. This approach fosters user-friendly interactions while effectively connecting employers with students, making the app a reliable and accessible career services platform.
+
+## Project Dependencies
+python-3
+pip install Flask==2.2.0
+pip install flask-sqlalchemy
+pip install flask-bcrypt
 
 ## Sprint-2 Demo
 [Click here to watch the application demo video](https://drive.google.com/drive/folders/1bHFQGDVLoLihGXm1B6A-cowelctm7CRo?usp=sharing)
+
+
+
