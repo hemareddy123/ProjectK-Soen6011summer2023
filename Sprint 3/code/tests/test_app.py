@@ -19,6 +19,11 @@ def client():
     with app.test_client() as client:
         yield client
 
+@pytest.fixture
+def app_ctx(client):
+    with app.app_context():
+        yield
+
 def test_signup(client): # Unit Test for SignUp
     formData = {"username": "teststudent1", "password": "teststudent1pass", "usertype": "student", "useremail": "teststudent1@me.com"}
     response = client.post('/signUp', data=formData)
@@ -48,35 +53,46 @@ def test_postJob(client): # Unit Test for Post Job
     assert response.status_code==200
     assert b"job saved success" in response.data # Job posting saved successfully
 
-def test_selectStudent(client): # Unit Test for Student Selection
-    formData = {"username": "teststudent1", "password": "teststudent1pass"}
-    response = client.post('/login', data=formData)
+def test_studentProfilePostReq(client, app_ctx): # Unit Test for Student profile creation
+    testStudent=User('test','test','test','test')
+    testStudent=User.get_user_by_username('teststudent1')
+    formData = {
+    'username': 'john_doe',
+    'highestQualification': 'PhD',
+    'work_experience': '5 years',
+    'achivements': 'Award winner',
+    'email': 'john@example.com',
+    'gender': 'Male',
+    'age': '1993-11-13',
+    'address': '123 Main Street',
+    'phone': '123-456-7890',
+    'userId': testStudent.id,
+    'resume':open('D:\Important_Docs\Himanshu Rathod Resume.pdf','rb')
+    }
+
+    # files={
+    #     'resume':open('D:\Important_Docs\Himanshu Rathod Resume.pdf','rb')
+    # }
+
+    response=client.post('/studentProfilePostReq', data=formData)
     assert response.status_code==200
-    assert response.json['message'] == 'success' # User Login Successful
+    assert response.json['msg'] == 'student created success'
 
-# @pytest.mark.usefixtures("client")
-# def test_studentProfilePostReq(client):
-#     testStudent=User.get_user_by_username('teststudent1')
-#     formData = {
-#     'username': 'john_doe',
-#     'highestQualification': 'PhD',
-#     'work_experience': '5 years',
-#     'achivements': 'Award winner',
-#     'email': 'john@example.com',
-#     'gender': 'Male',
-#     'age': '1993-11-13',
-#     'address': '123 Main Street',
-#     'phone': '123-456-7890',
-#     'userId': testStudent.id
-#     }
+def test_applyJob(client, app_ctx): # Unit Test for Apply Job
+    testJob=JobPosting.get_job_by_id(1)
+    testStudent=Student.get_user_by_email('john@example.com')
+    formData = {"jobposting_id": testJob.id, "stud_id": testStudent.id}
+    response = client.post('/applyJob', data=formData)
+    assert response.status_code==200
+    assert b"Job linked to student success" in response.data # Job Applied successfully ~ Student-Job realtionship established
 
-#     files={
-#         'resume':open('D:\Important_Docs\Himanshu Rathod Resume','rb')
-#     }
-
-#     response=client.post('/studentProfilePostReq', data=formData, files=files)
-#     assert response.status_code==200
-#     assert response.json['msg'] == 'student created success'
+def test_selectStudent(client, app_ctx): # Unit Test for Student Selection
+    testEmployer=User.get_user_by_username('testemployer1')
+    testStudent=Student.get_user_by_email('john@example.com')
+    formData = {"emp_id": testEmployer.id, "stud_id": testStudent.id}
+    response = client.post('/selectStudent', data=formData)
+    assert response.status_code==200
+    assert b"Emp Stu relationship created" in response.data # Student selected successfully ~ Employer-Student relationship established
 
 if __name__ == '__main__':
     pytest.main()
