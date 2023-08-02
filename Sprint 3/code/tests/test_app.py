@@ -70,10 +70,6 @@ def test_studentProfilePostReq(client, app_ctx): # Unit Test for Student profile
     'resume':open('D:\Important_Docs\Himanshu Rathod Resume.pdf','rb')
     }
 
-    # files={
-    #     'resume':open('D:\Important_Docs\Himanshu Rathod Resume.pdf','rb')
-    # }
-
     response=client.post('/studentProfilePostReq', data=formData)
     assert response.status_code==200
     assert response.json['msg'] == 'student created success'
@@ -93,6 +89,25 @@ def test_selectStudent(client, app_ctx): # Unit Test for Student Selection
     response = client.post('/selectStudent', data=formData)
     assert response.status_code==200
     assert b"Emp Stu relationship created" in response.data # Student selected successfully ~ Employer-Student relationship established
+
+def test_showAllUsers(client): # Unit Test for Show all users
+    response = client.get('/showAllUsers')
+    assert response.status_code==200
+    assert response.json['message'] == 'success' # Users' list fetching successful
+
+def test_deleteJob(client, app_ctx): # Unit Test for Apply Job
+    testJob=JobPosting.get_job_by_id(1)
+    formData = {"job_id": testJob.id}
+    response = client.post('/deleteJob', data=formData)
+    assert response.status_code==200
+    assert b"job deleted success" in response.data # Job Deleted successfully
+
+def test_deleteUser(client, app_ctx): # Unit Test for Apply Job
+    testUser=User.get_user_by_username('testemployer1')
+    formData = {"user_id": testUser.id}
+    response = client.post('/deleteUser', data=formData)
+    assert response.status_code==200
+    assert b"user deleted successfully" in response.data # User Deleted successfully
 
 if __name__ == '__main__':
     pytest.main()
