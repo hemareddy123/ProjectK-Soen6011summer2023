@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:   # Manually trigger the workflow
 
 jobs:
   build:
@@ -32,7 +33,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install backend dependencies
-        run: pip install -r sprint3/code/tests/requirements.txt
+        run: pip install -r sprint3/code/requirements.txt
 
       - name: Install Flask
         run: pip install Flask
