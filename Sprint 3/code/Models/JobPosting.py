@@ -36,7 +36,6 @@ class JobPosting(db.Model):
     def get_all_jobs(cls):
         return cls.query.all()
     
-    
     @classmethod
     def get_job_by_id(cls, id_):
         return cls.query.filter_by(id=id_).first()

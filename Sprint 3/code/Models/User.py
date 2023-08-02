@@ -38,7 +38,6 @@ class User(db.Model):
     user_students = db.relationship('Student',secondary = 'user_stu')
 
     def __init__(self, username, password,usertype,useremail):
-    
         self.username = username.lower()
         self.password = bcrypt.generate_password_hash(password).decode('utf-8')
         self.usertype = usertype.lower()
