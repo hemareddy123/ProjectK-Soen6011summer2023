@@ -95,14 +95,14 @@ def test_showAllUsers(client): # Unit Test for Show all users
     assert response.status_code==200
     assert response.json['message'] == 'success' # Users' list fetching successful
 
-def test_deleteJob(client, app_ctx): # Unit Test for Apply Job
+def test_deleteJob(client, app_ctx): # Unit Test for Delete Job
     testJob=JobPosting.get_job_by_id(1)
     formData = {"job_id": testJob.id}
     response = client.post('/deleteJob', data=formData)
     assert response.status_code==200
     assert b"job deleted success" in response.data # Job Deleted successfully
 
-def test_deleteUser(client, app_ctx): # Unit Test for Apply Job
+def test_deleteUser(client, app_ctx): # Unit Test for Delete User
     testUser=User.get_user_by_username('testemployer1')
     formData = {"user_id": testUser.id}
     response = client.post('/deleteUser', data=formData)
