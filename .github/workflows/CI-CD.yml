@@ -18,8 +18,6 @@ jobs:
       # Set up python environment
       - name: Set up Python Environment
         uses: actions/setup-python@v2
-        with:
-          python-version: 3.7
 
       # Intall backend dependencies/libraries
       - name: Intall backend dependencies/libraries
