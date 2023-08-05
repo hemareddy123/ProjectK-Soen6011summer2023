@@ -32,7 +32,7 @@ jobs:
       - name: Use database file
         working-directory: Sprint 3/code/
         run: |
-          python "Sprint 3/code/db.py"
+          python db.py
           
       # Run backend apis' unit tests
       - name: Run Backend Unit Tests
