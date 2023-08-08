@@ -36,6 +36,6 @@ jobs:
           
       # Run backend apis' unit tests
       - name: Run Backend Unit Tests
-        working-directory: /
+        working-directory: ./
         run: |
-          pytest /Sprint 3/code/tests/test_app_units.py
+          pytest "./Sprint 3/code/tests/test_app_units.py"
