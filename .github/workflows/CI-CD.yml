@@ -38,4 +38,4 @@ jobs:
       - name: Run Backend Unit Tests
         working-directory: ./
         run: |
-          pytest --junitxml="./Sprint 3/code/tests/output.xml" "./Sprint 3/code/tests/test_app_units.py"
+          pytest -s "./Sprint 3/code/tests/test_app_units.py"
