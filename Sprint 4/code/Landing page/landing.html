@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>CSP | Home</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="2.styling.css" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        <style>
+            .header{
+                letter-spacing: 2.5px;
+                color: whitesmoke;
+            }
+            #banner{
+                margin-top: 52px;
+                /*background-image: url(images/banner_bg2.png);*/
+                background-image: url(https://img.freepik.com/premium-photo/career-business-virtial-screen-abstract-background-mixed-media_161452-231.jpg);
+                background-size: cover;
+                background-repeat: no-repeat;
+                width: 100%;
+                height: 450px;
+            }
+
+            #introduction,#motivation{
+                border: 1.5px solid aliceblue;
+                border-radius: 10px;
+                width: 90%;
+                margin: auto;
+            }
+
+            .changeColor{
+                color: white;
+                background-color: rgba(0,0,0,0.5);
+            }
+            .fa:hover{
+                opacity: 0.7;
+            }
+            .unread {
+                cursor: pointer;
+                background-color: #f4f4f4;
+            }
+            .messages-box {
+                max-height: 28rem;
+                overflow: auto;
+            }
+            .online-circle {
+                border-radius: 5rem;
+                width: 5rem;
+                height: 5rem;
+            }
+            .messages-title {
+                float: right;
+                margin: 0px 5px;
+            }
+            .message-img {
+                float: right;
+                margin: 0px 5px;
+            }
+            .message-header {
+                text-align: right;
+                width: 100%;
+                margin-bottom: 0.5rem;
+            }
+            .text-editor {
+                min-height: 18rem;
+            }
+            .messages-list li.messages-you .messages-title {
+                float: left;
+            }
+            .messages-list li.messages-you .message-img {
+                float: left;
+            }
+            .messages-list li.messages-you p {
+                float: left;
+                text-align: left;
+            }
+            .messages-list li.messages-you .message-header {
+                text-align: left;
+            }
+            .messages-list li p {
+                max-width: 60%;
+                padding: 5px;
+                border: #e6e7e9 1px solid;
+            }
+            .messages-list li.messages-me p {
+                float: right;
+            }
+            .ql-editor p {
+                font-size: 1rem;
+            }              
+        </style>
+    </head>
+    <body style="font-size:16px">
+    <nav role="navigation" class="navbar navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="1.home.php" style="color:black;">CSP</a>
+            <button type="button" class="navbar-toggle" data-target="#navbarCollapse" data-toggle="collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbarCollapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span> HOME</a></li>
+            </ul>
+            
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> LOGIN</a></li>
+            </ul>
+            
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span> SIGN-UP</a></li>
+            </ul>
+        </div>
+    </div>
+    </nav>
+        
+    <!--Login form-->    
+      
+    <!--Sign up form--> 
+        
+    <div id="banner">
+<!--        <video autoplay loop muted id="bgvideo">-->
+<!--            <source src="images/sample_video.mp4" type="video/mp4">-->
+<!--            <source src="images/highway.mp4" type="video/mp4">-->
+<!--        </video>    -->
+        
+    </div>
+
+    <footer id="footer">
+      <div class="main-content">
+        <div class="left box">
+          <h2 style="margin-top:5px;">About us</h2>
+            <div class="content">
+                <p>
+                    A career service platform that connects job seekers with employers, providing job search tools, resume-building features, and access to job listings. It facilitates networking and offers resources for skill development to support career growth.
+                </p>
+<!--
+                <div class="social">
+                    <a href="#"><span class="fa fa-instagram" id="instagram"></span></a>
+                    <a href="#"><span class="fa fa-facebook-f" id="fb"></span></a>
+                    <a href="#"><span class="fa fa-youtube" id="youtube"></span></a>
+                    <a href="#"><span class="fa fa-twitter" id="twitter"></span></a>
+                </div>
+-->
+                <div class="social">
+                    <a href="#p"><span class="fab fa-instagram" id="instagram"></span></a>
+                    <a href="#"><span class="fab fa-facebook-f" id="fb"></span></a>
+                    <a href="#"><span class="fab fa-youtube" id="youtube"></span></a>
+                    <a href="#"><span class="fab fa-twitter" id="twitter"></span></a>
+                </div>
+            </div>
+          </div>
+
+            <div class="right box" style="border-left:1.5px solid black">
+                <h2 style="margin-top:5px;">Reach Out To Us</h2>
+            <div class="content">
+                <form action="#">
+                    <div class="email">
+                        <div class="text" style="font-size:1.7rem;">Email ID *</div>
+                        <input type="email" placeholder="Enter Email address" required style="color:black;">
+                    </div>
+            <div class="text" style="margin-top:10px;font-size:1.7rem;">Your message to us *</div>
+            <div class="msg" style="background-color:white;">
+                    
+                    <textarea id=".msgForm" rows="3" cols="62" placeholder="Tell us your queries" required></textarea> 
+                    <br />
+            <div class="btn">
+                <button type="submit" style="background-color:black;color:white;fontsize:17px;border-radius:7px;width:80px;">SEND</button>
+            </div>
+
+            </div>
+                </form>
+
+                </div>
+          </div>
+        </div>
+      </footer>   
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+    </body>
+</html>
