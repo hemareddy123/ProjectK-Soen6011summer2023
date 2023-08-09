@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<title>Chat</title>
+<style>
+body {
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.container {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+.time-left {
+  float: left;
+  color: #999;
+}
+
+.input-box {
+  flex: 1;
+  padding: 15px;
+  border-radius: 15px;
+  width: 100%;
+  border: 1px solid #ccc;
+}
+
+.input-area {
+  margin-top: 10px;
+}
+
+.send-button {
+  margin: 10px auto 0;
+  display: block;
+}
+.hidden{
+  display: none;
+}
+
+</style>
+</head>
+<body>
+<!-- <p>this is value of initiator {{ initater }}</p> -->
+<a href="#" id="holder" class="hidden" data-emp-id={{ empId }} data-student-id={{ stuId }} data-initater={{ initater }}></a>
+
+<h2>Messages</h2>
+
+<ul id="chat-messages">
+
+  {% for chat in chats %}
+
+      {% if chat.initater == 'employer' %}
+        {% set userTypeClass = 'container darker' %}
+        {% set username = employer.username %}
+      {% else %}
+        {% set userTypeClass = 'container' %}
+        {% set username = student.username %}
+      {% endif %}
+    <li class="{{ userTypeClass }}">
+      <p> <b>{{ username }}: </b>{{ chat.text }} </p>
+    </li>
+  {% endfor %} 
+</ul>
+
+
+<div class="input-area">
+  <input class="input-box" id="userInput" type="text" placeholder="Type your message...">
+  <button class="send-button">Send</button>
+</div>
+
+
+</body>
+
+<script src="{{ url_for('static',filename='scripts/chat.js') }}"> </script>
+</html>

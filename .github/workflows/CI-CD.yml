@@ -3,7 +3,10 @@ name: Career Services Application CI
 on:
   push:
     branches:
-      - Testing-Contiuous-Integration
+      - main
+  pull_request:
+    branches:
+      - main
   workflow_dispatch: # Manually trigger the workflow
 
 jobs:
@@ -25,17 +28,10 @@ jobs:
       - name: Install backend dependencies/libraries
         run: |
           python -m pip install --upgrade pip
-          pip install flask==2.2.5 flask-bcrypt==1.0.1 flask-restful==0.3.10 flask-sqlalchemy==3.0.5 pytest==7.1.2 pytest-flask==1.2.0 werkzeug==2.2.2
-      #     python "Sprint 3/code/db.py"
+          pip install flask==2.2.5 flask-bcrypt==1.0.1 flask-restful==0.3.10 flask-sqlalchemy==3.0.5 pytest==7.1.2 pytest-flask==1.2.0 werkzeug==2.2.2 flask-socketio==5.3.5
 
-      # # Use database file
-      # - name: Use database file
-      #   working-directory: Sprint 3/code/
-      #   run: |
-      #     python db.py
-          
-      # Run backend apis' unit tests
-      - name: Run Backend Unit Tests
-        working-directory: Sprint 3/code/tests/
+      # Run backend apis' tests
+      - name: Run Backend Tests
+        working-directory: Sprint 4/code/tests/
         run: |
           pytest -vv test_app_units.py
