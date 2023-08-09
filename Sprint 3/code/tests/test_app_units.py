@@ -24,13 +24,21 @@ def app_ctx(client):
     with app.app_context():
         yield
 
-def test_signup(client): # Unit Test for SignUp
-    formData = {"username": "teststudent1", "password": "teststudent1pass", "usertype": "student", "useremail": "teststudent1@me.com" }
-    response = client.post('/signUp', data=formData)
-    # response.status_code=200
-    # response.data='user created successfully'
-    assert response.status_code==200
-    assert b"user created successfully" in response.data # User SignUp Successful
+def test_signup(client):
+    formData = {
+        "username": "teststudent1",
+        "password": "teststudent1pass",
+        "usertype": "student",
+        "useremail": "teststudent1@me.com"
+    }
+    try:
+        response = client.post('/signUp', data=formData)
+        assert response.status_code == 200
+        assert b"user created successfully" in response.data  # User SignUp Successful
+    except Exception as e:
+        # Print the exception and its details for debugging
+        print(f"Exception occurred: {e}")
+        raise  # Re-raise the exception to fail the test
 
 def test_login(client): # Unit Test for Login
     formData = {"username": "teststudent1", "password": "teststudent1pass"}
