@@ -35,3 +35,4 @@ jobs:
         working-directory: Sprint 4/code/tests/
         run: |
           pytest -vv test_app_units.py
+          pytest -vv test_app_integrations.py

@@ -68,21 +68,21 @@ def test_postJob__studentProfileCreatuon_applyJob_integartion(client): # Integra
     assert profileCreationResponse.json['msg'] == 'student created success'
     
     # Posting a job for student to apply
-    testEmployer=User.get_user_by_username(formData["signupFormData"])
+    testEmployer=User.get_user_by_username(signupFormData["username"])
     start='08/01/2023'
     end='08/31/2023'
     testJobPosting = JobPosting('DevOps Engineer', 'Well-versed in Kubernetes, Jenkins, and containerized applications; Requires 3+ experience', start, end, 'Vancouver, Canada', 'Full-time')
     postJobFormData={'title': testJobPosting.title, 'description': testJobPosting.description, 'startDate': start, 'endDate': end, 'location': testJobPosting.location, 'jobType': testJobPosting.jobType, 'employer_id': testEmployer.id}
     postJobResponse = client.post('/postJob', data=json.dumps(postJobFormData), content_type='application/json')
     assert postJobResponse.status_code==200
-    assert b"job saved success" in response.data # Job posting saved successfully
+    assert b"job saved success" in postJobResponse.data # Job posting saved successfully
 
     testJob=JobPosting.get_job_by_id(1)
     testStudent=Student.get_user_by_email('john@example.com')
     applyJobFormData = {"jobposting_id": testJob.id, "stud_id": testStudent.id}
     applyJobResponse = client.post('/applyJob', data=json.dumps(applyJobFormData), content_type='application/json')
     assert applyJobResponse.status_code==200
-    assert b"Job linked to student success" in response.data # Job Applied successfully
+    assert b"Job linked to student success" in applyJobResponse.data # Job Applied successfully
 
     if(signupResponse.status_code==200 and profileCreationResponse.status_code==200 and postJobResponse.status_code==200 and applyJobResponse==200):
         print("Post Job, Student Profile Creation, and Apply Job integration successful")
