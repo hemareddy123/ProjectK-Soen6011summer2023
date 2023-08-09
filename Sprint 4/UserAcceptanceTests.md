@@ -202,3 +202,27 @@
 
 **Actual Result:**
 - The admin is successfully able to delete users
+
+## User Story: As a student, I want to access a chat box so that I can view messages and reply to them
+
+**Test Steps:**
+1. Once selected, click on 'applied jobs'
+2. Scroll horizontally and click on 'open chat window'
+
+**Expect Result:**
+- This action should take the student to a new page where they can send and receive messages with recruiters.
+
+**Actual Result:**
+- The student user is successfully able to communicate with the recruiter.
+
+## User Story: As an employer, I want to access a chat box so that I can view messages and reply to them (with students)
+
+**Test Steps:**
+1. Once a student is shortlisted, go to 'shortlisted candidates'.
+2. Scroll horizontally to find the 'open chat window' and click on it.
+
+**Expect Result:**
+- This should take the employer to a new page where they can send and receive messages to/from selected students.
+
+**Actual Result:**
+- The employer/recruiter is successfully able to communicate with selected candidates.
