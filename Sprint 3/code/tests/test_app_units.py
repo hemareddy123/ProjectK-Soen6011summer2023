@@ -85,7 +85,7 @@ def test_studentProfilePostReq(client, app_ctx): # Unit Test for Student profile
     'address': '123 Main Street',
     'phone': '123-456-7890',
     'userId': testStudent.id,
-    'resume': open('/Users/dikshantyadav/Desktop/Rahul Sharam_resume.pdf', 'rb')
+    'resume': open('./Rahul Sharam_resume.pdf', 'rb')
     }
 
     response=client.post('/studentProfilePostReq', data=formData)
