@@ -144,6 +144,7 @@ api.add_resource(CrStudJob,"/applyJob")
 api.add_resource(DlJobPosting,"/deleteJob")
 api.add_resource(DlUser,"/deleteUser")
 
+# Main method for the Flask Application
 if __name__ == '__main__':
     app.run(debug=True)
 
