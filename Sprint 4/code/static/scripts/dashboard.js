@@ -1,3 +1,4 @@
+// Setting up the tailwind config for using the tailwind css
 tailwind.config = {
     theme: {
       fontFamily: {
@@ -19,6 +20,7 @@ let simpleMde = new SimpleMDE({
   element: document.getElementById("description")
 })
 
+// Logical Mapping for employer dashboard with the sidebar navigation
 const mapping = {
   'addJob' : 'postJob',
   'dashboard' : 'listings',
@@ -27,6 +29,7 @@ const mapping = {
   'showAllUsers' : 'allUsersTable'
 }
 
+// Event handler for the changing the style and view on the client side
 $("#addJob, #dashboard, #allCandidates, #selectedCandidates").click(function(event) {
   event.preventDefault();
   $("#addJob, #dashboard, #allCandidates, #selectedCandidates").removeClass("border border-primary-light bg-primary-light/40");

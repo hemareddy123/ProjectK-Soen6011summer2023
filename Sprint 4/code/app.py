@@ -28,14 +28,14 @@ socketio.init_app(app)
 # Dropping the all previous table and creating new one, on every restart of application
 @app.before_first_request
 def create_tables():
-    db.drop_all()
+    #db.drop_all()
     db.create_all()
 
 api = Api(app)
 
 # Home Route
 @app.route('/')
-def hello_world():  # put application's code here
+def hello_world(): 
     return render_template('index.html')
 
 #Employee Dashboard Route
@@ -106,6 +106,15 @@ def student_profile():
     student = Student.get_user_by_id(studentId)
     return render_template('studentProfile.html',student=student)
 
+
+# Student Profile Form Route
+@app.route('/studentProfileUpdate')
+def studentProfileUpdate():
+    studentId = request.args.get('id')
+    student = Student.get_user_by_id(studentId)
+    
+    return render_template('studentUpdateProfileForm.html', student=student)
+
 # Download the resume for the student Profile
 @app.route('/download_resume')
 def download_resume():
@@ -167,9 +176,8 @@ def calculate_age(date_of_birth):
     age = today.year - date_of_birth.year - ((today.month, today.day) < (date_of_birth.month, date_of_birth.day))
     return age
 
-
 # core api's that are required for supporting tasks.
-
+# These api's are required update/delete/create jobs/profiles of different users
 api.add_resource(UserLogin,"/login")
 api.add_resource(CrUser,"/signUp")
 api.add_resource(CrJobPosting,"/postJob")

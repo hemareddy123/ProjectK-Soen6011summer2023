@@ -1,11 +1,13 @@
 from db import db
 from datetime import datetime
 
+# Relational Table b/w Employer and Job Posting (employer Id and jobposting Id)
 job_emp = db.Table('job_emp',
     db.Column('job_id', db.Integer, db.ForeignKey('jobposting.id'), primary_key=True),
     db.Column('emp_id', db.Integer, db.ForeignKey('user.id'), primary_key=True)
 )
 
+# Model for the Job Posting, and its respective attributes
 class JobPosting(db.Model):
     __tablename__ = 'jobposting'
 
@@ -28,14 +30,17 @@ class JobPosting(db.Model):
         self.startDate = datetime.strptime(startDate,"%m/%d/%Y")
         self.endDate =  datetime.strptime(endDate,"%m/%d/%Y")
 
+    # saving the record to db
     def save_to_db(self):
         db.session.add(self)
         db.session.commit()
 
+    # getting the all jobs
     @classmethod
     def get_all_jobs(cls):
         return cls.query.all()
     
+    # getting an individual job posting basis on id
     @classmethod
     def get_job_by_id(cls, id_):
         return cls.query.filter_by(id=id_).first()

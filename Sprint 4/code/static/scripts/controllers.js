@@ -1,3 +1,5 @@
+
+// Event for listening the the signUp event from the index page
 $('#signupForm').submit(function (event) {
   
     event.preventDefault();
@@ -37,12 +39,15 @@ $('#signupForm').submit(function (event) {
     });
   });
 
+// Event handling the login of a user either from admin, employer and student.
 $('#loginForm').submit(function(event) {
     event.preventDefault();
     var formData = {
         username: $('input[name="loginusername"]').val(),
         password: $('input[name="loginpassword"]').val(),
     };
+
+    // Hitting the backend api for handling the login form
     $.ajax({
         url: 'http://127.0.0.1:5000/login',
         type: 'POST',
@@ -71,10 +76,9 @@ $('#loginForm').submit(function(event) {
     });
 })
 
+// Event for handling the Job Posts from the employer
 $('#jobPosting').submit(function(event) {
     event.preventDefault();
-    
-    //var empId = $('#createJobBtn').data('emp-id');
 
     var formData = {
         title: $('input[name="jobTitle"]').val(),
@@ -114,12 +118,11 @@ $('#jobPosting').submit(function(event) {
     });
 });
 
+// Event for applied candidate to the shortlisted candidate
 $('.selectCandidate').click(function(event) {
     event.preventDefault();
     var empId = $(this).data('emp-id');
     var studId = $(this).data('student-id');
-    //var clickedElement = $(this);
-    //clickedElement.addClass('disabled-link');
 
     var formData = {
         'emp_id' : empId,
@@ -128,7 +131,8 @@ $('.selectCandidate').click(function(event) {
 
     console.log(formData);
 
-
+    // Hitting the backend api for selecting the candidate from employer 
+    // dashboard.
     $.ajax({
         url: 'http://127.0.0.1:5000/selectStudent',
         type: 'POST',
@@ -151,7 +155,7 @@ $('.selectCandidate').click(function(event) {
     
 })
 
-
+// Creating the student profile after logging into the user account.
 $('#createProfile').click(function(event) {
     event.preventDefault();
 
@@ -173,6 +177,7 @@ $('#createProfile').click(function(event) {
         console.log(`${entry[0]}: ${entry[1]}`);
     }
 
+    // Hitting the profile api to the server for the profile creation
     $.ajax({
         url: 'http://127.0.0.1:5000/studentProfilePostReq',
         type: 'POST',
@@ -190,6 +195,8 @@ $('#createProfile').click(function(event) {
     }); 
 });
 
+
+// Event for handling the student applying to a job posting
 $('.apply-job-link').click(function(event) {
     
     event.preventDefault();
@@ -219,6 +226,7 @@ $('.apply-job-link').click(function(event) {
     });
 })
 
+// Event for deleting the job posting either by employer or admin
 $('.deleteJobPosting').click(function(event) {
     
     event.preventDefault();
@@ -247,6 +255,7 @@ $('.deleteJobPosting').click(function(event) {
     }); 
 })
 
+// Event handler for deleting the user, allowed to admin user only!
 $('.deleteUser').click(function(event) {
     
     event.preventDefault();
@@ -276,6 +285,7 @@ $('.deleteUser').click(function(event) {
     }); 
 })
 
+// student event for chat handler with selected employer
 $('.studentChat').click(function(event){
     event.preventDefault();
 

@@ -3,6 +3,7 @@ from flask_bcrypt import Bcrypt
 import json
 from sqlalchemy import or_
 
+# using Bcrypt() to save password text the in encrypted format in db
 bcrypt = Bcrypt()
 
 #students that been applied to job posted by the employer
@@ -23,6 +24,7 @@ user_stu = db.Table('user_stu',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
     db.Column('stud_id', db.Integer, db.ForeignKey('student.id'), primary_key=True)
 )
+# Model class represting the user and its attributes
 class User(db.Model):
     __tablename__ = 'user'
 

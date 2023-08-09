@@ -3,9 +3,10 @@ from Models.User import User
 from Models.Student import Student
 from db import db
 
+# Creating the student and employer relationship after selecting the candidate
 _user_parser = reqparse.RequestParser()
-_user_parser.add_argument('emp_id', type=int, required=True, help='Add the title of job into the system')
-_user_parser.add_argument('stud_id', type=int, required=True, help='Add the description of job into the system')
+_user_parser.add_argument('emp_id', type=int, required=True, help='Add the empId into the system')
+_user_parser.add_argument('stud_id', type=int, required=True, help='Add the StudId of job into the system')
 class CrEmpStud(Resource):
     def post(self):
         data = _user_parser.parse_args()
