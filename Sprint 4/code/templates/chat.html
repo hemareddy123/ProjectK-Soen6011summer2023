@@ -3,6 +3,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <title>Chat</title>
 <style>
 body {
@@ -40,31 +41,58 @@ body {
   float: left;
   color: #999;
 }
+
+.input-box {
+  flex: 1;
+  padding: 15px;
+  border-radius: 15px;
+  width: 100%;
+  border: 1px solid #ccc;
+}
+
+.input-area {
+  margin-top: 10px;
+}
+
+.send-button {
+  margin: 10px auto 0;
+  display: block;
+}
+.hidden{
+  display: none;
+}
+
 </style>
 </head>
 <body>
 
+<a href="#" id="holder" class="hidden" data-emp-id={{ empId }} data-student-id={{ stuId }} data-initater={{ initater }}></a>
+
 <h2>Messages</h2>
 
-<div class="container">
-  <p>Hello. How are you today?</p>
-  <span class="time-right">11:00</span>
+<ul id="chat-messages">
+
+  {% for chat in chats %}
+
+      {% if chat.initater == 'employer' %}
+        {% set userTypeClass = 'container' %}
+      {% else %}
+        {% set userTypeClass = 'container darker' %}
+      {% endif %}
+    <li class="{{ userTypeClass }}">
+      {{ chat.text }}
+    </li>
+  {% endfor %} 
+</ul>
+
+
+<div class="input-area">
+  <input class="input-box" id="userInput" type="text" placeholder="Type your message...">
+  <button class="send-button">Send</button>
 </div>
 
-<div class="container darker">
-  <p>Hey! I'm fine. Thanks for asking!</p>
-  <span class="time-left">11:01</span>
-</div>
-
-<div class="container">
-  <p>Sweet! So, what do you wanna do today?</p>
-  <span class="time-right">11:02</span>
-</div>
-
-<div class="container darker">
-  <p>Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>
-  <span class="time-left">11:05</span>
-</div>
 
 </body>
+
+<script src="{{ url_for('static',filename='scripts/chat.js') }}"> </script>
 </html>

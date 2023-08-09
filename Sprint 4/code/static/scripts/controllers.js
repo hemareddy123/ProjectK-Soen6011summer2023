@@ -126,6 +126,8 @@ $('.selectCandidate').click(function(event) {
         'stud_id' : studId
     }
 
+    console.log(formData);
+
 
     $.ajax({
         url: 'http://127.0.0.1:5000/selectStudent',

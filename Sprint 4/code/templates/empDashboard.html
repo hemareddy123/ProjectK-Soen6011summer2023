@@ -356,7 +356,7 @@
                 <a href="{{ url_for('student_profile', id=student.id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"> Click to profile </a>
               </td>
               <td class="px-6 py-4 w-1/8">
-                <a href="" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"> Message </a>
+                <a href="{{ url_for('chat', empid=empId, studid=student.id, initater="employer")}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"> Message </a>
               </td>
             </tr>
           {% endfor %}

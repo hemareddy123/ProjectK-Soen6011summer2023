@@ -1,17 +1,20 @@
 from flask import Flask, render_template, request, Response, redirect, url_for
-from flask_restful import Api, Resource
-from socket_events import socketio
+from flask_restful import Api
+from datetime import datetime
+from socket_event import socketio
 
 from db import db
 from Resource.EmpStudentController import CrEmpStud
 from Models.User import User
 from Models.JobPosting import JobPosting
 from Models.Student import Student
+from Models.Chat import Chat
 
 from Resource.UserController import CrUser,UserLogin, DlUser
 from Resource.JobPostController import CrJobPosting , DlJobPosting
 from Resource.StudentController import CrStudent , CrStudJob
 from Resource.AdminController import ShowAllUsers
+from Resource.ChatController import CrChat
 from datetime import datetime
 
 
@@ -24,7 +27,7 @@ socketio.init_app(app)
 
 @app.before_first_request
 def create_tables():
-    db.drop_all()
+    #db.drop_all()
     db.create_all()
 
 api = Api(app)
@@ -40,6 +43,7 @@ def emp_dashboard():
     jobs = JobPosting.get_all_jobs()
     students = emp.applied_students
     selectedStudents = emp.selected_students
+
     # print('below is the type')
     # print(type(students))
     #selectedStudents = emp.selected_students
@@ -118,10 +122,17 @@ def download_resume():
 
 @app.route('/chat')
 def chat():
-    return render_template('chat.html')
+    
+    studId = request.args.get('studid')
+    empId = request.args.get('empid')
+    initater = request.args.get('initater')
+    chats = Chat.get_chat_by_empId_studId(empId,studId)
 
-def student_dashboard():
-    username = request.args.get()
+    return render_template('chat.html',stuId=studId,empId=empId,initater=initater,chats=chats)
+
+@app.route('/studentChat')
+def studentChat():
+    
 
 @app.template_filter('age_format')
 def age_format(date_of_birth):
@@ -143,7 +154,9 @@ api.add_resource(ShowAllUsers,"/showAllUsers")
 api.add_resource(CrStudJob,"/applyJob")
 api.add_resource(DlJobPosting,"/deleteJob")
 api.add_resource(DlUser,"/deleteUser")
+api.add_resource(CrChat,'/createChat')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # app.run(debug=True)
+    socketio.run(app,debug=True)
 
