@@ -28,7 +28,7 @@ socketio.init_app(app)
 # Dropping the all previous table and creating new one, on every restart of application
 @app.before_first_request
 def create_tables():
-    #db.drop_all()
+    db.drop_all()
     db.create_all()
 
 api = Api(app)
