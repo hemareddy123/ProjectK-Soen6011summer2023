@@ -2,11 +2,13 @@ from db import db
 
 from datetime import datetime
 
+# relation Table b/w Student and Job Posting
 stu_jobs = db.Table('stu_jobs',
     db.Column('stud_id', db.Integer, db.ForeignKey('student.id'), primary_key=True),
     db.Column('job_id', db.Integer, db.ForeignKey('jobposting.id'), primary_key=True)
 )
 
+# Model Table and its respective attributes
 class Student(db.Model):
     __tablename__ = 'student'
 
@@ -23,8 +25,10 @@ class Student(db.Model):
     resume = db.Column(db.LargeBinary)
     status = db.Column(db.String(15), nullable=True)
 
+    # Creating the relationship b/w job posting and Student record
     selectedJobs = db.relationship('JobPosting',secondary = 'stu_jobs')
     
+    # construtor initalizing the student object
     def __init__(self,username,highestQualification,work_experience,achivements,email,gender,age,address,phone,resume):
         self.username = username
         self.highestQualification = highestQualification
@@ -37,10 +41,12 @@ class Student(db.Model):
         self.phone = phone
         self.resume = resume
 
+    # saving the record into db
     def save_to_db(self):
         db.session.add(self)
         db.session.commit()
 
+    # getting all student
     @classmethod
     def get_all_students(cls):
         return cls.query.all()

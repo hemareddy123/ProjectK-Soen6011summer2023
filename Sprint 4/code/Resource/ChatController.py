@@ -1,6 +1,7 @@
 from flask_restful import reqparse, Resource
 from Models.Chat import Chat
 
+# Saving the Chat into the database, b/w employer and student
 _user_parser = reqparse.RequestParser()
 _user_parser.add_argument('empId', type=int, required=True, help='Add the employer id linked into the system')
 _user_parser.add_argument('studId', type=int, required=True, help='Add the student id linked into the system')

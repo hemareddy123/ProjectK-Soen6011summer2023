@@ -1,3 +1,4 @@
+// Setting up the tailwind config for using the tailwind css
 tailwind.config = {
     theme: {
       fontFamily: {
@@ -15,6 +16,7 @@ tailwind.config = {
     plugins: [],
   }
 
+// Logical Mapping b/w student sidebar navigation and selected view
 const mapping = {
   'appliedJobs' : 'appliedJobTable',
   'allJobs' : 'listings',

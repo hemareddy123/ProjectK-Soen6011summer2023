@@ -4,19 +4,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create Profile</title>
+  <title>Update Profile</title>
   <!-- Link to your CSS file -->
-  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/studentProfile.css') }}">
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/studentUpdateProfile.css') }}">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <!-- Add any other required meta tags, stylesheets, or scripts here -->
 </head>
 <body>
   <main>
-    <form id="register" method="post" enctype="multipart/form-data">
-    <h2 id="register__title">Create your Student profile</h2>
+    <form id="update-register" method="post" enctype="multipart/form-data">
+    <h2 id="register__title">Update your Student profile</h2>
     <div class="register__box">
       <label for="user">Full Name<i class="fas fa-asterisk"></i></label>
-      <input id="user" type="text" maxLength="64" required placeholder="Name">
+      <input id="user" type="text" maxLength="64" required value="{{ student.username }}">
     </div>
 
     <label for="Education">Select your highest level of education:</label>
@@ -26,19 +26,18 @@
       <option value="UnderGraduate">Under Graduate</option>
       <option value="HighSchool" selected>High School</option>
     </select>
-
     <div class="register__box">
       <label for="experience">Experience<i class="fas fa-asterisk"></i></label>
-      <input id="experience" type="text" maxLength="64" required placeholder="Add your Experiences : Experience 1, Experience 2,..">
+      <input id="experience" type="text" maxLength="64" value="{{ student.work_experience }}">
     </div>
     <div class="register__box">
       <label for="achievments">Achivements<i class="fas fa-asterisk"></i></label>
-      <textarea id="achievments" required placeholder="Past Achivements" rows="5" cols="80"></textarea>
+      <textarea id="achievments" value="{{ student.achivements }}" rows="5" cols="80"></textarea>
     </div>
 
     <div class="register__box">
       <label for="mail">E-mail<i class="fas fa-asterisk"></i></label>
-      <input id="mail" type="email" size="64" maxLength="64" required placeholder="Example@gmail.com" pattern=".+@gmail.com" title="Example@gmail.com">
+      <input id="mail" type="email" size="64" maxLength="64" value="{{ student.email }}" pattern=".+@gmail.com" title="Example@gmail.com">
     </div>
 
     <div class="register__box conteiner__check" id="genderContainer">
@@ -60,26 +59,26 @@
     </div>
     <div class="register__box">
       <label for="age">Age</label>
-      <input id="age" type="date" minLength="2">
+      <input id="age" type="date" value= "{{ student.age }}" minLength="2">
     </div>
     <div class="register__box">
       <label for="address">Address</label>
-      <input id="address" type="text" maxLength="100">
+      <input id="address" type="text" maxLength="100" value = "{{ student.address }}">
     </div>
     <div class="register__box">
       <label for="phone">Phone Number</label>
-      <input id="phone" type="number" maxLength="11">
+      <input id="phone" type="number" maxLength="11" value="{{ phone }}">
     </div>
     <div class="register__box">
       <label for="resume">Upload Resume</label>
-      <input id="resume" type="file">
+      <input id="resume" type="file" value="{{ student.resume }}">
     </div>
     
     <div id="overlay hidden">
-      <a href="#" class="hidden" id="mylink" data-user-id={{ user.id }}></a>
+      <a href="#" class="hidden" id="mylink"></a>
     </div>
     
-    <input type="button" value="Create profile" id="createProfile">
+    <input type="button" value="Create profile" id="updateProfile">
     </form>
     <div id="overlay" class="hidden">
       <div id="avatar"></div>

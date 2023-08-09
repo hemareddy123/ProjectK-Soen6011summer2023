@@ -1,5 +1,8 @@
 'use strict'
 
+/*
+  Setting up the elements and changing their styling on events handler
+*/
 const loginForm = document.querySelector('form.login')
 const signupForm = document.querySelector('form.signup')
 const loginBtn = document.querySelector('label.text-login')
@@ -79,14 +82,10 @@ email.addEventListener('keydown',()=>{
   }
 })
 
-// grab everything we need
+// grab everything we need for small screen
 const btn = document.querySelector("button.mobile-menu-button");
 const menu = document.querySelector(".mobile-menu");
 
-// add event listeners
-// btn.addEventListener("click", () => {
-//   menu.classList.toggle("hidden");
-// });
 
 // Get the elements
 const aboutButton = document.getElementById('about');

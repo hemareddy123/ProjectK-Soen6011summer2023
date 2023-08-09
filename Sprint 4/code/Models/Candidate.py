@@ -1,5 +1,6 @@
 from db import db
 
+# Creating the Candidate Model Class to represent the backend structure.
 class Candidate(db.Model):
     __tablename__ = 'candidate'
 
