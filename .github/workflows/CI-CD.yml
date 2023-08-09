@@ -3,10 +3,10 @@ name: Career Services Application CI
 on:
   push:
     branches:
-      - main
+      - Testing-Continuous-Integration
   pull_request:
     branches:
-      - main
+      - Testing-Continuous-Integration
   workflow_dispatch: # Manually trigger the workflow
 
 jobs:
