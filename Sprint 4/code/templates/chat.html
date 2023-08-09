@@ -65,7 +65,7 @@ body {
 </style>
 </head>
 <body>
-
+<!-- <p>this is value of initiator {{ initater }}</p> -->
 <a href="#" id="holder" class="hidden" data-emp-id={{ empId }} data-student-id={{ stuId }} data-initater={{ initater }}></a>
 
 <h2>Messages</h2>
@@ -75,12 +75,14 @@ body {
   {% for chat in chats %}
 
       {% if chat.initater == 'employer' %}
-        {% set userTypeClass = 'container' %}
-      {% else %}
         {% set userTypeClass = 'container darker' %}
+        {% set username = employer.username %}
+      {% else %}
+        {% set userTypeClass = 'container' %}
+        {% set username = student.username %}
       {% endif %}
     <li class="{{ userTypeClass }}">
-      {{ chat.text }}
+      <p> <b>{{ username }}: </b>{{ chat.text }} </p>
     </li>
   {% endfor %} 
 </ul>

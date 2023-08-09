@@ -9,6 +9,7 @@ _user_parser.add_argument('text',type=str, required=True, help='Text of the job'
 class CrChat(Resource):
     def post(self):
         data = _user_parser.parse_args()
+        print('here is the value of initator' + str(data['initater']))
         chat = Chat(**data)
         chat.save_to_db()
         

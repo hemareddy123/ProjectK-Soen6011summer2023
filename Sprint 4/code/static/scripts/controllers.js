@@ -275,3 +275,11 @@ $('.deleteUser').click(function(event) {
         }
     }); 
 })
+
+$('.studentChat').click(function(event){
+    event.preventDefault();
+
+    studentId = $(this).data('student-id');
+    jobId = $(this).data('job-id');
+    window.location.href='http://127.0.0.1:5000/studentChat?studid='+studentId+'&jobid='+jobId;
+})

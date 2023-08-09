@@ -136,7 +136,7 @@
                 </td>
                 {% if student.status == 'Selected for interview' %}
                   <td class="px-6 py-4">
-                    <a href="" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"> Open Chat Window</a>
+                    <a href="" class="studentChat font-medium text-blue-600 dark:text-blue-500 hover:underline" data-job-id="{{ job.id }}" data-student-id="{{ student.id }}"> Open Chat Window</a>
                   </td>
                 {% endif %}
 

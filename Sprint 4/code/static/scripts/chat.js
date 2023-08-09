@@ -5,22 +5,36 @@ var initater = $('#holder').data('initater');
 var list = $('#chat-messages');
 list.scrollTop(list.prop("scrollHeight"));
 
+socket.connect();
 
 socket.on("chat", function(data) {
 
-    var newListItem = $("<li>").text(data["message"]);
+    var resEmpId = data["empId"];
+    var resStudId = data["studId"];
 
-    initater = data["initater"];
+    if(resEmpId == empId && resStudId == studId){
 
-    if(initater === "employer"){
-        newListItem.addClass("container darker");
+        // var newListItem = $("<li>").text($("<b>").text(data["username"]+ ": ") +data["message"]);
+        var newListItem = $("<li>").append($("<b>").text(data["username"] + ": ")).append(data["message"]);
+
+
+        initater = data["initater"];
+
+        if(initater === "employer"){
+            newListItem.addClass("container darker");
+        }else if(initater === "student"){
+            newListItem.addClass("container");
+        }
+
+        list.append(newListItem);
+
+        console.log(list.prop("scrollHeight"));
+        list.scrollTop(list.prop("scrollHeight"));
+        //socket.disconnect();
+        //socket.connect();
+
     }
 
-    list.append(newListItem);
-
-    console.log(list.prop("scrollHeight"));
-    list.scrollTop(list.prop("scrollHeight"));
-    socket.disconnect();
 })
 
 $("#userInput").keyup(function(event) {
@@ -34,12 +48,16 @@ $('.send-button').click(function(event){
 
     text = $('#userInput').val();
 
+    initater = $('#holder').data('initater');
+
     var formData = {
         text: text,
         empId: empId,
         initater: initater,
         studId: studId
     };
+
+    
 
     $.ajax({
         url: 'http://127.0.0.1:5000/createChat',
@@ -50,10 +68,13 @@ $('.send-button').click(function(event){
             // Handle the response from the servers
             window.alert(response);
             $("#userInput").val("");
-            socket.connect();
-            socket.on("connect", function(){
-                socket.emit("new_message",text,initater);
-            })
+            // if (!socket.connected) {
+            //     socket.connect();
+            // }
+            // socket.once("connect", function(){
+            //     socket.emit("new_message",text,initater,empId,studId);
+            // })
+            socket.emit("new_message", text, initater, empId, studId);
         },
         error: function (error) {
             // Handle any errors that occur during the request
