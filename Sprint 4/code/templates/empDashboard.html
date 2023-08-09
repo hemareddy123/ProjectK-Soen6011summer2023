@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Employer DashBoard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/dashboard.css') }}">
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css'>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/datepicker.min.js"></script>
+</head>
+<body>
+
+<div id="successDiv" class="hidden px-8 py-6 bg-green-400 text-white flex justify-between rounded">
+  <div class="flex items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 mr-6" viewBox="0 0 20 20" fill="currentColor">
+          <path
+            d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z"
+          />
+      </svg>
+      <p>Success! Job Posted Success</p>
+  </div>
+</div>
+
+<!-- partial:index.partial.html -->
+<div class="flex min-h-screen">
+  <div class="w-60 rounded-br-md rounded-tr-lg bg-primary p-4 antialiased">
+    <div class="flex items-center gap-2">
+      <div class="grid h-9 w-9 place-content-center rounded border border-primary-light bg-primary-light/50 text-xl text-white">UI</div>
+      <div class="">
+        <p class="font-medium text-white">{{username}}</p>
+        <p class="text-sm text-slate-200">{{email}}</p>
+      </div>
+
+      <svg class="ml-auto h-5 w-5 self-start fill-white" viewBox="0 0 24 24"><path d="M18.2073 9.04304 12.0002 2.83594 5.79312 9.04304 7.20733 10.4573 12.0002 5.66436 16.7931 10.4573 18.2073 9.04304ZM5.79297 14.9574 12.0001 21.1646 18.2072 14.9574 16.793 13.5432 12.0001 18.3361 7.20718 13.5432 5.79297 14.9574Z"></path></svg>
+    </div>
+
+    <ul class="mt-10 flex w-full flex-col gap-3">
+      <li>
+        <a href="#" id="dashboard" class="flex items-center gap-2 rounded-md border border-primary-light bg-primary-light/40 hover:bg-primary-light/40 px-3 py-2 text-primary-white">
+          <svg class="h-5 w-5 fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 3V19H21V21H3V3H5ZM20.2929 6.29289L21.7071 7.70711L16 13.4142L13 10.415L8.70711 14.7071L7.29289 13.2929L13 7.58579L16 10.585L20.2929 6.29289Z"></path></svg>
+          Dashboard
+        </a>
+      </li>
+      <li>
+        <a href="#" id="addJob" class="flex items-center gap-2 rounded-md px-3 py-2 text-primary-white hover:bg-primary-light/40">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-white" viewBox="0 0 24 24"><path d="M21 13.2422V20H22V22H2V20H3V13.2422C1.79401 12.435 1 11.0602 1 9.5C1 8.67286 1.22443 7.87621 1.63322 7.19746L4.3453 2.5C4.52393 2.1906 4.85406 2 5.21132 2H18.7887C19.1459 2 19.4761 2.1906 19.6547 2.5L22.3575 7.18172C22.7756 7.87621 23 8.67286 23 9.5C23 11.0602 22.206 12.435 21 13.2422ZM19 13.9725C18.8358 13.9907 18.669 14 18.5 14C17.2409 14 16.0789 13.478 15.25 12.6132C14.4211 13.478 13.2591 14 12 14C10.7409 14 9.5789 13.478 8.75 12.6132C7.9211 13.478 6.75911 14 5.5 14C5.331 14 5.16417 13.9907 5 13.9725V20H19V13.9725ZM5.78865 4L3.35598 8.21321C3.12409 8.59843 3 9.0389 3 9.5C3 10.8807 4.11929 12 5.5 12C6.53096 12 7.44467 11.3703 7.82179 10.4295C8.1574 9.59223 9.3426 9.59223 9.67821 10.4295C10.0553 11.3703 10.969 12 12 12C13.031 12 13.9447 11.3703 14.3218 10.4295C14.6574 9.59223 15.8426 9.59223 16.1782 10.4295C16.5553 11.3703 17.469 12 18.5 12C19.8807 12 21 10.8807 21 9.5C21 9.0389 20.8759 8.59843 20.6347 8.19746L18.2113 4H5.78865Z"></path></svg>
+          Add Jobs
+        </a>
+      </li>
+      <li>
+        <a id="allCandidates" href="#" class="flex items-center gap-2 rounded-md px-3 py-2 text-primary-white hover:bg-primary-light/60">
+          <svg class="h-5 w-5 fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.00008 6V9H5.00008V6H8.00008ZM3.00008 4V11H10.0001V4H3.00008ZM13.0001 4H21.0001V6H13.0001V4ZM13.0001 11H21.0001V13H13.0001V11ZM13.0001 18H21.0001V20H13.0001V18ZM10.7072 16.2071L9.29297 14.7929L6.00008 18.0858L4.20718 16.2929L2.79297 17.7071L6.00008 20.9142L10.7072 16.2071Z"></path></svg>
+          Applied Candidates
+        </a>
+      </li>
+      <li>
+        <a id="selectedCandidates" href="#" class="flex items-center gap-2 rounded-md px-3 py-2 text-primary-white hover:bg-primary-light/60">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24"><path d="M12 2c5.5 0 10 4.5 10 10s-4.5 10-10 10S2 17.5 2 12 6.5 2 12 2zm0 2c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.2-5-5-5zm0 9c2.7 0 5.1 1.4 6.4 3.5-.6.2-1.2.5-1.7.9-1.4-.8-3-.8-4.4 0-.5-.4-1.1-.7-1.7-.9 1.3-2.1 3.7-3.5 6.4-3.5zM12 21c3.3 0 6.3-1.7 8-4.4-1.7-2.8-4.7-4.6-8-4.6s-6.3 1.8-8 4.6c1.7 2.7 4.7 4.4 8 4.4zm-3-1.6c-1.6-1.4-2.8-3.1-3.5-5 .8-.3 1.7-.4 2.5 0-.7 1.9-1.9 3.6-3.5 5 1.2.6 2.6 1 4 1s2.8-.4 4-1z" fill="rgba(255, 255, 255, 1)"></path></svg>   
+          Shortlisted Candidates
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+
+  <br>
+  
+  <div class="bg-white p-4">   
+      <h2 class="text-3xl font-bold text-slate-800">Welcome to your Career Service Dashboard</h2>
+      <p style="margin-top: 10px;" class="font-medium text-slate-500">Track, manage and view jobs postings and Candidates</p> <br>
+
+      <div id="listings" class="grid grid-cols-4 gap-4">
+        {% for job in jobs %}
+          <div class="bg-white shadow-md p-4 w-60 rounded-br-md rounded-tr-lg bg-primary antialiased">
+            <h3 class="text-lg font-semibold text-gray-800">Job-Title: {{ job.title }}</h3>
+            <p class="text-gray-600">Job-Type: {{ job.jobType }}</p>
+            <p class="text-sm text-gray-500">Job-Location: {{ job.location }}</p>
+            <p class="mt-2 text-md text-gray-700">
+              Description: {{ job.description }}
+            </p>
+            
+            <p class="text-gray-500">Start date: {{ job.startDate.strftime('%d %b %Y') }}</p>
+            <p class="text-gray-500">End date: {{ job.endDate.strftime('%d %b %Y') }}</p><br>
+
+            <a target="_blank" style="cursor: pointer;" class="deleteJobPosting text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" data-job-id={{ job.id }}>Delete Job</a>
+          </div>
+        {% endfor %}
+      </div>
+      <div id="toast-success" class="hidden flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
+        <div class="flex items-center space-x-2">
+            <div class="w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
+                <svg class="w-5 h-5 mx-auto my-auto" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+                </svg>
+            </div>
+            <div class="ml-3 text-sm font-normal">Candidate Selected Successfully</div>
+        </div>
+    </div>
+    
+    
+    <!-- JOB POSTING FORM -->
+    <div id="postJob" class="w-full max-w-xl mx-auto hidden m-2">
+      <form id="jobPosting" action="#">
+        <h1 class="text-2xl mb-2">Post new job</h1>
+        
+        <div class="job-info border-b-2 py-2 mb-5">
+          <!--    Title      -->
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm mb-2" for="job-title">Title</label>
+            <input class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-500" type="text" id="job-title" name="jobTitle" placeholder="Frontend Developer" autofocus>
+          </div>
+
+          <div class="md:flex md:justify-between">
+            <!--      Job Type      -->
+            <div class="w-full md:w-3/12 mb-4 md:mb-0">
+                <label class="block text-gray-700 text-sm mb-2" for="job-type">
+                  Job Type
+                </label>
+                <div class="relative">
+                  <select class="block appearance-none w-full bg-white border border-gray-400 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:border-gray-500" id="job-type" name="jobType">
+                    <option>Full-time</option>
+                    <option>Part-time</option>
+                    <option>Freelance</option>
+                    <option>Contract</option>
+                  </select>
+
+                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                  </div>
+                </div>
+            </div>
+
+            <!--     Location       -->
+            <div class="w-full md:w-8/12 mb-4 md:mb-0">
+              <label for="location" class="block text-gray-700 text-sm mb-2">Location</label>
+              <input type="text" class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-500" id="location" name="location" placeholder="Schwerin">
+
+              <div>
+                <label class="text-gray-600 flex items-center" for="remote">
+                  <input class="mr-2 leading-tight" type="checkbox" id="remote">
+                  <span class="text-sm">Work can be done remotely</span>
+                </label>
+              </div>
+            </div>
+          </div> <!-- end group -->
+
+          <div>
+            <label for="description" class="block text-gray-700 text-sm mb-2">Description</label>
+            <textarea name="description" id="description" cols="" rows=""></textarea>
+          </div>
+
+          <div class="flex flex-wrap -mx-3">
+            <div class="w-full md:w-1/2 px-3 mb-4 md:mb-0">
+              <label for="company" class="block text-gray-700 text-sm mb-2">Company</label>
+              <input type="text" class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-500" id="company" name="company" placeholder="Company">
+            </div>
+
+            <div class="w-full md:w-1/2 px-3 mb-4 md:mb-0">
+              <label for="company" class="block text-gray-700 text-sm mb-2">Company Website</label>
+              <input type="text" class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-500" id="company" name="company" placeholder="https://www.djangoproject.com/">
+            </div>
+          </div> <!-- end group -->
+
+          <p class="block text-gray-700 text-sm mb-2">Duration</p>
+          <div date-rangepicker class="flex items-center">
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                   <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                  </svg>
+              </div>
+              <input name="startDate" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date start">
+            </div>
+            <span class="mx-4 text-gray-500">to</span>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                   <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                  </svg>
+              </div>
+              <input name="endDate" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date end">
+          </div>
+          </div>
+        </div> <!-- end job-info -->
+        <!--     Submit     -->
+        <div>
+          <button id="createJobBtn" class="bg-teal-500 hover:bg-teal-600 text-white py-2 px-3 rounded" type="submit" data-emp-id={{ empId }}>Create job</button>
+        </div>
+      </form>
+
+
+    
+    </div><br>
+
+    <!-- Employee All Candidates Table -->
+
+    <div id="studentTable" class="hidden relative overflow-x-auto shadow-md sm:rounded-lg">
+      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 table-auto">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th scope="col" class="px-6 py-3 w-1/8">
+                Name
+              </th>
+              <th scope="col" class="px-6 py-3 w-1/8">
+                Qualification
+              </th>
+              <th scope="col" class="px-6 py-3 w-1/8">
+                Experience
+              </th>
+              <th scope="col" class="px-6 py-3 w-1/8">
+                Achivements
+              </th>
+              <th scope="col" class="px-6 py-3 w-1/8">
+                Email
+              </th>
+              <th scope="col" class="px-6 py-3 w-1/8">
+                Gender
+              </th>
+              <th scope="col" class="px-6 py-3 w-1/8">
+                Age
+              </th>
+              <th scope="col" class="px-6 py-3 w-1/8">
+                Address
+              </th>
+              <th scope="col" class="px-6 py-3 w-1/8">
+                Phone
+              </th>
+              <th scope="col" class="px-6 py-3 w-1/8">
+                Profile
+              </th>
+              <th scope="Col" class="px-6 py-3 w-1/8">
+                Action
+            </th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for student in students %}
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+
+              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-1/8">
+                {{ student.username }}                                     
+              </th>
+              <td class="px-6 py-4 w-1/8">
+                {{ student.highestQualification }}
+              </td>
+              <td class="px-6 py-4 w-1/8">
+                {{ student.work_experience }}
+              </td>
+              <td class="px-6 py-4 w-1/8">
+                {{ student.achivements }}
+              </td>
+              <td class="px-6 py-4 w-1/8">
+                {{ student.email }}
+              </td>
+              <td class="px-6 py-4 w-1/8">
+                {{ student.gender }}
+              </td>
+              <td class="px-6 py-4 w-1/8">
+                {{ student.age|age_format }}
+              </td>
+              <td class="px-6 py-4 w-1/8">
+                {{ student.address }}
+              </td>
+              <td class="px-6 py-4 w-1/8">
+                {{ student.phone }}
+              </td>
+              <td class="px-6 py-4 w-1/8">
+                <a href="{{ url_for('student_profile', id=student.id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"> Click to profile </a>
+              </td>
+              <td class="px-6 py-4 w-1/8">
+                  <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline selectCandidate" data-emp-id={{ empId }} data-student-id={{ student.id }}>Select</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+    <!-- Employee Selected Candidates Table -->
+    <div id="selectedStudentTable" class="hidden relative overflow-x-auto shadow-md sm:rounded-lg">
+      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 table-auto">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <tr>
+            <th scope="col" class="px-6 py-3 w-1/8">
+              Name
+            </th>
+            <th scope="col" class="px-6 py-3 w-1/8">
+              Qualification
+            </th>
+            <th scope="col" class="px-6 py-3 w-1/8">
+              Experience
+            </th>
+            <th scope="col" class="px-6 py-3 w-1/8">
+              Achivements
+            </th>
+            <th scope="col" class="px-6 py-3 w-1/8">
+              Email
+            </th>
+            <th scope="col" class="px-6 py-3 w-1/8">
+              Gender
+            </th>
+            <th scope="col" class="px-6 py-3 w-1/8">
+              Age
+            </th>
+            <th scope="col" class="px-6 py-3 w-1/8">
+              Address
+            </th>
+            <th scope="col" class="px-6 py-3 w-1/8">
+              Phone
+            </th>
+            <th scope="col" class="px-6 py-3 w-1/8">
+              Profile
+            </th>
+            <th scope="col" class="px-6 py-3 w-1/8">
+              Message
+            </th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          {% for student in selectedStudents %}
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+
+              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-1/8">
+                {{ student.username }}                                     
+              </th>
+              <td class="px-6 py-4 w-1/8">
+                {{ student.highestQualification }}
+              </td>
+              <td class="px-6 py-4 w-1/8">
+                {{ student.work_experience }}
+              </td>
+              <td class="px-6 py-4 w-1/8">
+                {{ student.achivements }}
+              </td>
+              <td class="px-6 py-4 w-1/8">
+                {{ student.email }}
+              </td>
+              <td class="px-6 py-4 w-1/8">
+                {{ student.gender }}
+              </td>
+              <td class="px-6 py-4 w-1/8">
+                {{ student.age|age_format }}
+              </td>
+              <td class="px-6 py-4 w-1/8">
+                {{ student.address }}
+              </td>
+              <td class="px-6 py-4 w-1/8">
+                {{ student.phone }}
+              </td>
+              <td class="px-6 py-4 w-1/8">
+                <a href="{{ url_for('student_profile', id=student.id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"> Click to profile </a>
+              </td>
+              <td class="px-6 py-4 w-1/8">
+                <a href="{{ url_for('chat', empid=empId, studid=student.id, initater="employer")}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"> Message </a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+    
+  </div>  
+</div>
+
+<!-- partial -->
+<script src='https://cdn.tailwindcss.com'></script>
+<script src='https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js'></script>
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.12.3/cdn.js'></script> -->
+<script src="{{ url_for('static',filename='scripts/dashboard.js') }}"> </script>
+<script src="{{ url_for('static',filename='scripts/controllers.js') }}"></script>
+
+
+</body>
+</html>
