@@ -146,7 +146,7 @@ def chat():
     employer = User.get_user_by_id(empId)
     
 
-    return render_template('chat.html',stuId=studId,empId=empId,initater=initater,chats=chats,employer=employer,student=student)
+    return render_template('chat.html',stuId=studId,empId=empId,initater=initater,chats=chats,employer=employer,student=student,name=employer.username)
 
 # student chat route
 @app.route('/studentChat')
@@ -163,7 +163,7 @@ def studentChat():
 
 
     chats = Chat.get_chat_by_empId_studId(empId,studId)
-    return render_template('chat.html',stuId=studId,empId=empId,initater=initater,chats=chats,employer=employer,student=student)
+    return render_template('chat.html',stuId=studId,empId=empId,initater=initater,chats=chats,employer=employer,student=student,name=student.username)
 
 # Filtering the age to proper format and calculating his current age
 @app.template_filter('age_format')
